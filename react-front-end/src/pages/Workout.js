@@ -46,8 +46,14 @@ export default function Workout(props) {
         minWidth={380}
       >
         {/* Array of Exercise Cards */}
-        {exercises.map((exercise) => (
-          <ExerciseCard {...exercise} key={exercise.id} />
+        {exercises.map((exercise, index) => (
+          <ExerciseCard
+            {...exercise}
+            key={exercise.id}
+            index={index}
+            exercisesState={exercises}
+            setExercises={setExercises}
+          />
         ))}
 
         {/* Render Add button unless in addingExercise state */}
@@ -57,6 +63,7 @@ export default function Workout(props) {
             size="medium"
             sx={{ alignSelf: "center" }}
             onClick={setAdding}
+            color="primary"
           >
             <AddIcon />
           </Fab>

@@ -119,11 +119,12 @@ export default function ExerciseCard(props) {
     // Send request to create
     Axios.post(`/api/exercises`, exerciseData)
       .then((response) => {
-        // Build new exercises state with newest at the end
-        let newState = [...props.exercises, exerciseData];
+        // Build updated exercises state with newest at the end
+        let updatedState = [...props.exercises, response.data];
         props.setAdding(false);
-        // Set new Workout page state to trigger re-render
-        props.setExercises(newState);
+
+        // Set updated state to trigger re-render
+        props.setExercises(updatedState);
       })
       .catch((e) => {
         console.log("Error: ", e);

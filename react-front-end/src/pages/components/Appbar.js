@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {
   Avatar,
@@ -12,12 +12,6 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Appbar(props) {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/dashboard");
-  };
-
   return (
     <AppBar
       position="fixed"
@@ -36,17 +30,16 @@ export default function Appbar(props) {
         >
           <MenuIcon />
         </IconButton>
-
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 100 }}
-          onClick={handleClick}
-        >
-          Workout Tracker
-        </Typography>
-
-        <Avatar alt="Jason Ling" src="images/pikachu.png" />
+        <Link to="/dashboard" className={"mainLogo"}>
+          <Typography variant="subtitle1" sx={{ flexGrow: 100 }}>
+            FitHub
+          </Typography>
+        </Link>
+        <Avatar
+          alt="User Avatar"
+          src="https://images.unsplash.com/photo-1627693685101-687bf0eb1222?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          sx={{ mr: 1, ml: "auto" }}
+        />
         <Button color="inherit">Logout</Button>
       </Toolbar>
     </AppBar>

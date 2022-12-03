@@ -52,7 +52,7 @@ const addExercise = (exercises) => {
       ]
     )
     .then((result) => {
-      return result.rows;
+      return result.rows[0];
     })
     .catch((err) => {
       err.message;

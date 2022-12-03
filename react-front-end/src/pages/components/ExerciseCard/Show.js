@@ -86,7 +86,7 @@ export default function ExerciseCard(props) {
           <Typography variant="p">REST</Typography>
         </ExerciseAttribute>
         {/* Expand/collapse card chevron \/ */}
-        <CardActions disableSpacing="true" sx={{ p: 0 }}>
+        <CardActions disableSpacing sx={{ p: 0 }}>
           <ExpandMore
             expand={expanded}
             onClick={() => setExpanded(!expanded)}
