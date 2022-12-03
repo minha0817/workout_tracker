@@ -42,7 +42,7 @@ export default function Login() {
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
         <Link color="inherit" href="https://www.linkedin.com/in/jason-ling-898844149/">
-          Fitness Tracker
+          FitHub
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}

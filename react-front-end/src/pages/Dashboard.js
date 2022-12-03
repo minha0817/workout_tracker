@@ -17,12 +17,13 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
-  // Grabs info from api and checks if user is login, if not than redirected to login
+  // Grabs info from both api
   useEffect(() => {
     getDashboard();
     getHeatmap();
   }, []);
 
+  // Checks cookies to see if user is login if not redirect
   const getDashboard = () => {
     Axios.get("http://localhost:8080/api/dashboard")
       .then((result) => {
@@ -61,7 +62,7 @@ export default function Dashboard() {
     const day = new Date().toISOString().split("T")[0];
     const user_id = 1;
     const value = 1;
-    Axios.post("http://localhost:8080/api/workoutlogs", { user_id, value, day })
+    Axios.post("/api/workoutlogs", { user_id, value, day })
       .then((result) => {
         getHeatmap();
       })
@@ -73,30 +74,32 @@ export default function Dashboard() {
   return (
     <>
       <Container>
-      <h1 display="flex" justifyContent="center">
-        Welcome to your Dashboard {dashboard.first_name}{" "}
-        <Button
-          variant="outlined"
-          startIcon={<EditIcon />}
-          size="small"
-          sx={{ ml: "auto" }}
-          s
-          onClick={() => {
-            if (userEdit) {
-              setUserEdit(false);
-            } else {
-              setUserEdit(true);
-            }
-          }}
-        >
-          Edit
-        </Button>{" "}
-        <UserEditForm
-        show={userEdit}
-        showState={setUserEdit}
-        getDashboard={getDashboard}
-      />
-      </h1>
+        <h1 display="flex" justifycontent="center">
+          Welcome to your Dashboard {dashboard.first_name}{" "}
+          <Button
+            variant="outlined"
+            startIcon={<EditIcon />}
+            size="small"
+            sx={{ ml: "auto" }}
+            s
+            onClick={() => {
+              if (userEdit) {
+                setUserEdit(false);
+              } else {
+                setUserEdit(true);
+              }
+            }}
+          >
+            Edit
+          </Button>{" "}
+          {userEdit && (
+            <UserEditForm
+              show={userEdit}
+              showState={setUserEdit}
+              getDashboard={getDashboard}
+            />
+          )}
+        </h1>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
             <Paper>
@@ -105,16 +108,12 @@ export default function Dashboard() {
                   <Typography
                     variant="h5"
                     component="div"
-                    display="flex"
-                    justifyContent="center"
                   >
                     Goal: {dashboard.goal}
                   </Typography>
                   <Typography
                     sx={{ mb: 1.5 }}
                     color="text.secondary"
-                    display="flex"
-                    justifyContent="center"
                   >
                     {reachGoal()}
                   </Typography>
@@ -130,7 +129,7 @@ export default function Dashboard() {
                     variant="h5"
                     component="div"
                     display="flex"
-                    justifyContent="center"
+                    justifycontent="center"
                   >
                     Current Weight
                   </Typography>
@@ -138,7 +137,7 @@ export default function Dashboard() {
                     sx={{ mb: 1.5 }}
                     color="text.secondary"
                     display="flex"
-                    justifyContent="center"
+                    justifycontent="center"
                   >
                     {dashboard.current_weight} lbs
                   </Typography>
@@ -154,7 +153,7 @@ export default function Dashboard() {
                     variant="h5"
                     component="div"
                     display="flex"
-                    justifyContent="center"
+                    justifycontent="center"
                   >
                     Goal Weight
                   </Typography>
@@ -162,7 +161,7 @@ export default function Dashboard() {
                     sx={{ mb: 1.5 }}
                     color="text.secondary"
                     display="flex"
-                    justifyContent="center"
+                    justifycontent="center"
                   >
                     {dashboard.goal_weight} lbs
                   </Typography>
@@ -178,7 +177,7 @@ export default function Dashboard() {
                     variant="h5"
                     component="div"
                     display="flex"
-                    justifyContent="center"
+                    justifycontent="center"
                   >
                     Fitness Tracker{" "}
                     <Button

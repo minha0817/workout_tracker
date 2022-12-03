@@ -1,23 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { ResponsiveCalendar } from "@nivo/calendar";
-import Axios from "axios";
 
 export const Heatmap = (props) => {
  
-
-
-  // useEffect(() => {
-  //   Axios.get("http://localhost:8080/api/workoutlogs")
-  //     .then((result) => {
-  //       setData(result.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // }, []);
-
-
-
   return (
     <ResponsiveCalendar
       data={props.data}
