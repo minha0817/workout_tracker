@@ -6,13 +6,17 @@ import {
   TextField,
   CardActions,
   CardContent,
-  Typography,
+  IconButton,
+  InputAdornment,
+  Tooltip,
+  Link,
 } from "@mui/material";
 import Axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Confirmation from "../Confirmation";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 import CloseIcon from "@mui/icons-material/Close";
+import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded";
 
 //A form for creating, editing workout
 export default function WorkoutForm(props) {
@@ -26,6 +30,40 @@ export default function WorkoutForm(props) {
     duration: props.workout ? props.workout.duration : null,
     image: props.workout ? props.workout.image : "",
   });
+
+  //State for errors
+  const [nameError, setNameError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
+  const [durationError, setDurationError] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
+  const checkAllErrors = () => {
+    setNameError(false);
+    setDescriptionError(false);
+    setDurationError(false);
+    setImageError(false);
+
+    if (state.name && state.description && state.duration && state.image) {
+      return true;
+    }
+
+    if (!state.name) {
+      setNameError("Name - required");
+    }
+    if (!state.description) {
+      setDescriptionError("Description - required");
+    }
+
+    if (!state.duration) {
+      setDurationError("Duration - Number required");
+    }
+
+    if (!state.image) {
+      setImageError("Image - required");
+    }
+
+    return false;
+  };
 
   //State for Confirm modal.
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -62,22 +100,27 @@ export default function WorkoutForm(props) {
 
   //Send a request to put workout
   const editWorkout = () => {
-    Axios.put(`/api/workouts/${props.workout.id}`, state)
-      .then((result) => {
-        props.cancelEdit();
-        props.getWorkout();
-      })
-      .catch((e) => console.log(e));
+    // checkAllErrors(); //false
+    if (checkAllErrors()) {
+      Axios.put(`/api/workouts/${props.workout.id}`, state)
+        .then((result) => {
+          props.cancelEdit();
+          props.getWorkout();
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   //Send a request to create workout
   const createWorkout = () => {
-    Axios.post(`/api/workouts`, state)
-      .then((result) => {
-        props.cancelCreate();
-        props.getWorkout();
-      })
-      .catch((e) => console.log(e));
+    if (checkAllErrors()) {
+      Axios.post(`/api/workouts`, state)
+        .then((result) => {
+          props.cancelCreate();
+          props.getWorkout();
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   //Send a request to delete workout
@@ -92,68 +135,110 @@ export default function WorkoutForm(props) {
 
   return (
     <>
-      <Card>
-        <CardContent
+      <Card display="flex" sx={{ width: "70%" }}>
+        <Box
           sx={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "space-around",
-            alignItems: "center",
+            // alignItems: "center",
           }}
         >
           <CardContent>
-            <Typography variant="h5">Workout title</Typography>
+            {/* <Typography variant="h5">Workout title</Typography> */}
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Workout Name"
+                variant="outlined"
+                type="text"
+                multiline
+                fullWidth
+                value={state.name || ""}
+                onChange={nameCallback}
+                sx={{ mb: "2rem" }}
+                // sx={{ maxWidth: "80%", overflow: "visible" }}
+                helperText={nameError ? nameError : ""}
+                error={!!nameError}
+              />
+            </div>
 
-            <TextField
-              id="standard-basic"
-              label="Workout Name"
-              variant="standard"
-              name="Workout name"
-              type="text"
-              placeholder={state.name}
-              multiline
-              value={state.name}
-              onChange={nameCallback}
-            />
+            <div>
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                fullWidth
+                sx={{ mb: "2rem" }}
+                label="Duration"
+                type="number"
+                // placeholder={state.duration}
+                value={state.duration || ""}
+                InputProps={{
+                  inputProps: { min: 0 },
+                }}
+                onChange={durationCallback}
+                helperText={durationError ? durationError : ""}
+                error={!!durationError}
+              />
+            </div>
 
-            <TextField
-              id="standard-basic"
-              label="Duration"
-              variant="standard"
-              name="Workout duration"
-              type="text"
-              placeholder={state.duration}
-              value={state.duration}
-              onChange={durationCallback}
-            />
+            <div>
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                fullWidth
+                sx={{ mb: "2rem" }}
+                label="Description"
+                name="Workout description"
+                type="text"
+                placeholder={state.description || ""}
+                multiline
+                value={state.description}
+                onChange={descriptionCallback}
+                helperText={descriptionError ? descriptionError : ""}
+                error={!!descriptionError}
+              />
+            </div>
 
-            <TextField
-              id="standard-basic"
-              label="URL"
-              variant="standard"
-              name="Workout URL"
-              type="text"
-              placeholder={state.image}
-              multiline
-              value={state.image}
-              onChange={imageCallback}
-            />
-            <TextField
-              id="standard-basic"
-              label="Description"
-              variant="standard"
-              name="Workout description"
-              type="text"
-              placeholder={state.description}
-              multiline
-              value={state.description}
-              onChange={descriptionCallback}
-            />
+            <div>
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                fullWidth
+                sx={{ mb: "2rem" }}
+                label="URL"
+                type="text"
+                placeholder={state.image}
+                multiline
+                value={state.image || ""}
+                onChange={imageCallback}
+                helperText={imageError ? imageError : ""}
+                error={!!imageError}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment
+                      position="end"
+                      sx={{ position: "relative", top: "4px" }}
+                    >
+                      <Link
+                        href="https://www.pexels.com/"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Tooltip title="Pexels.com" arrow placement="right">
+                          <CameraAltRoundedIcon />
+                        </Tooltip>
+                      </Link>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </div>
             <CardActions disableSpacing>
               <Button
                 color="secondary"
                 size="small"
                 sx={{ ml: "auto" }}
-                // startIcon={<CloseIcon />}
                 onClick={handleCancel}
               >
                 Cancel
@@ -163,20 +248,23 @@ export default function WorkoutForm(props) {
                 variant="contained"
                 size="small"
                 startIcon={<SaveSharpIcon />}
-                sx={{ ml: "auto" }}
+                sx={{ ml: "auto", margin: "10px" }}
                 onClick={saveWorkout}
               >
                 Save
               </Button>
 
               {props.edit ? (
-                <DeleteIcon
+                <IconButton
+                  aria-label="delete"
                   size="large"
                   color="error"
                   onClick={() => {
                     setConfirmOpen(true);
                   }}
-                />
+                >
+                  <DeleteIcon />
+                </IconButton>
               ) : null}
               {confirmOpen ? (
                 <Confirmation
@@ -188,7 +276,7 @@ export default function WorkoutForm(props) {
               ) : null}
             </CardActions>
           </CardContent>
-        </CardContent>
+        </Box>
       </Card>
     </>
   );
