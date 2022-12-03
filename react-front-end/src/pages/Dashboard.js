@@ -196,8 +196,8 @@ export default function Dashboard() {
                     </Button>
                   </Typography>
                 </CardContent>
-                <Box m="20px">
-                  <Box height="75vh">
+                <Box m="8px">
+                  <Box height="50vh">
                     <Heatmap
                       data={data}
                       setData={setData}
