@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   field: {
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 10,
     display: "block",
   },
 });
@@ -115,8 +115,10 @@ export const UserEditForm = (props) => {
           type="submit"
           color="secondary"
           variant="contained"
+          size="small"
+          sx={{ ml: "auto" }}
         >
-          Submit
+          Save
         </Button>
       </form>
     </Container>
