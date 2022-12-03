@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Axios from "axios";
-import {
-  Button,
-  Container,
-  Typography,
-} from "@mui/material";
-
+import { Button, Container, Typography } from "@mui/material";
+import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 
 export const UserEditForm = (props) => {
   const [goal, setGoal] = useState("");
@@ -48,7 +44,8 @@ export const UserEditForm = (props) => {
     }
   };
 
-    return ( props.show &&
+  return (
+    props.show && (
       <Container size="sm">
         <Typography
           variant="h6"
@@ -105,17 +102,25 @@ export const UserEditForm = (props) => {
             fullWidth
             error={goalWeightError}
           />
-
+          <Button
+            variant="outlined"
+            color="secondary"
+            size="small"
+            onClick={() => props.showState(false)}
+          >
+            Cancel
+          </Button>
           <Button
             type="submit"
-            color="secondary"
             variant="contained"
             size="small"
             sx={{ ml: "auto" }}
+            startIcon={<SaveSharpIcon />}
           >
             Save
           </Button>
         </form>
       </Container>
-    );
+    )
+  );
 };
