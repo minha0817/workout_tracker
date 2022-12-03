@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { Button, Container, Typography, Box, TextField } from "@mui/material";
+import { Button, Container, Typography, Box, TextField, CardActions } from "@mui/material";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
+
 
 export const UserEditForm = (props) => {
   const [goal, setGoal] = useState("");
@@ -63,7 +64,7 @@ export const UserEditForm = (props) => {
             label="Goal"
             variant="outlined"
             color="secondary"
-            bordercolor ='green'
+            bordercolor="green"
             margin="normal"
             display="block"
             placeholder="Enter Goal"
@@ -71,7 +72,7 @@ export const UserEditForm = (props) => {
             fullWidth
             value={goal}
             error={goalError}
-            helperText={ goalError === true ? "Goal -required" : ""}
+            helperText={goalError === true ? "Goal -required" : ""}
           />
           <TextField
             onChange={(e) => setCurrentWeight(e.target.value)}
@@ -87,7 +88,9 @@ export const UserEditForm = (props) => {
             value={currentWeight}
             fullWidth
             error={currentWeightError}
-            helperText={ currentWeightError === true ? "Current Weight -required" : ""}
+            helperText={
+              currentWeightError === true ? "Current Weight -required" : ""
+            }
           />
           <TextField
             onChange={(e) => setGoalWeight(e.target.value)}
@@ -105,26 +108,26 @@ export const UserEditForm = (props) => {
             error={goalWeightError}
             helperText={goalWeightError === true ? "Goal Weight -required" : ""}
           />
-          <Box
-            display="flex"
-            justifyContent= "flex-end">
-          <Button
-            variant="outlined"
-            color="secondary"
-            size="small"
-            onClick={() => props.showState(false)}
-          >
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            size="small"
-            sx={{ ml: "auto" }}
-            startIcon={<SaveSharpIcon />}
-          >
-            Save
-          </Button>
+          <Box display="flex" justifyContent="flex-end" marginBottom={2} >
+          <CardActions disableSpacing sx={{paddingRight: "0px"}}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              size="small"
+              onClick={() => props.showState(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              size="small"
+              sx={{ ml: "10px" }}
+              startIcon={<SaveSharpIcon />}
+            >
+              Save
+            </Button>
+            </CardActions>
           </Box>
         </form>
       </Container>
