@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
 import Axios from "axios";
 import {
   Button,
+  Box,
   Container,
   Typography,
+  TextField
 } from "@mui/material";
 
 
@@ -67,13 +68,15 @@ export const UserEditForm = (props) => {
             label="Goal"
             variant="outlined"
             color="secondary"
+            bordercolor ='green'
             margin="normal"
             display="block"
+            placeholder="Enter Goal"
             type="text"
-            required
             fullWidth
             value={goal}
             error={goalError}
+            helperText={ goalError === true ? "Goal -required" : ""}
           />
           <TextField
             onChange={(e) => setCurrentWeight(e.target.value)}
@@ -82,30 +85,33 @@ export const UserEditForm = (props) => {
             name="current_weight"
             margin="normal"
             display="block"
-            required
             variant="outlined"
+            // placeholder="Enter Current Weight"
             color="secondary"
             type="number"
             value={currentWeight}
             fullWidth
             error={currentWeightError}
+            // helperText={ currentWeightError === true ? "Current Weight -required" : ""}
           />
           <TextField
             onChange={(e) => setGoalWeight(e.target.value)}
             label="Goal Weight"
             variant="outlined"
-            required
             id="goal_weight"
             name="goal_weight"
             margin="normal"
             display="block"
+            placeholder="Enter Goal Weight"
             color="secondary"
             type="number"
             value={goalWeight}
             fullWidth
             error={goalWeightError}
+            helperText={goalWeightError === true ? "Goal Weight -required" : ""}
           />
-
+          <Box display="flex"
+            justifycontent="flex-end">
           <Button
             type="submit"
             color="secondary"
@@ -115,6 +121,7 @@ export const UserEditForm = (props) => {
           >
             Save
           </Button>
+          </Box>
         </form>
       </Container>
     );
