@@ -2,3 +2,15 @@
 .workoutListItem {
   all: unset;
 }
+
+.mainLogo {
+  all: unset;
+}
+
+.css-nx0lnf-MuiTypography-root {
+  cursor: pointer;
+}
+
+.MuiFormHelperText-root {
+  white-space: nowrap;
+}

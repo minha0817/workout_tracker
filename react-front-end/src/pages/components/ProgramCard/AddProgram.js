@@ -3,20 +3,59 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { usePrograms } from "../../../App";
 import ProgramForm from "./ProgramForm";
+import { Button, Box } from "@mui/material";
+import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 
 export default function AddProgram() {
+  //State for name and description
   const [addProgramData, setAddProgramData] = useState({
     name: "",
     description: "",
   });
 
-  const { programs, setPrograms } = usePrograms();
+  const [errorMessages, setErrorMessages] = useState({
+    name: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+  });
 
+  //Use a UseOutletContext from App.js
+  const { getAndSetPrograms } = usePrograms();
+
+  //State for startdate
   const [startDate, setStartDate] = useState("");
+  //State for enddate
   const [endDate, setEndDate] = useState("");
+
   const navigate = useNavigate();
 
   const addProgram = () => {
+    const validationObject = {};
+
+    validationObject.name = addProgramData.name ? "" : "Name - required";
+    validationObject.description = addProgramData.description
+      ? ""
+      : "Description - required";
+    validationObject.startDate = startDate
+      ? ""
+      : "Start Date - required";
+    validationObject.endDate = endDate
+      ? ""
+      : "End Date - required";
+
+    setErrorMessages({ ...errorMessages, ...validationObject });
+
+    if (
+      validationObject.name ||
+      validationObject.description ||
+      validationObject.startDate ||
+      validationObject.endDate
+    ) {
+      return;
+    }
+
+    //Assemble program data object
     const newProgramFormData = {
       ...addProgramData,
       start_date: startDate,
@@ -24,11 +63,11 @@ export default function AddProgram() {
       user_id: 1,
     };
 
+    //Send a request to post
     axios
       .post("/api/programs", newProgramFormData)
       .then((result) => {
-        setPrograms([...programs, result.data[0]]);
-
+        getAndSetPrograms();
         navigate(`/program/${result.data[0].id}`);
       })
       .catch((e) => {
@@ -36,10 +75,12 @@ export default function AddProgram() {
       });
   };
 
+  //Redirect to the homepage
   const handleCancel = () => {
     navigate("/dashboard");
   };
 
+  //Setstate for name
   const addName = (event) => {
     setAddProgramData({
       ...addProgramData,
@@ -47,6 +88,7 @@ export default function AddProgram() {
     });
   };
 
+  //Setstate for description
   const addDescription = (event) => {
     setAddProgramData({
       ...addProgramData,
@@ -54,10 +96,12 @@ export default function AddProgram() {
     });
   };
 
+  //Setstate for startdate
   const addStartDate = (newValue) => {
     setStartDate(newValue);
   };
 
+  //Setstate for enddate
   const addEndDate = (newValue) => {
     setEndDate(newValue);
   };
@@ -74,8 +118,9 @@ export default function AddProgram() {
         startDateCallback={addStartDate}
         endDate={endDate}
         endDateCallback={addEndDate}
-        cancel={handleCancel}
-        save={addProgram}
+        errorMessages={errorMessages}
+        cancelCallback={handleCancel}
+        saveCallback={addProgram}
       />
     </>
   );

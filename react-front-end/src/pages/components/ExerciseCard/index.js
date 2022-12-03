@@ -3,8 +3,7 @@ import Show from "./Show";
 import EditForm from "./EditForm";
 
 export default function ExerciseCard(props) {
-  // console.log("this is the prop in ECard", props);
-
+  // State to toggle between viewing and editing (form)
   const [edit, setEdit] = useState(false);
 
   return edit ? (

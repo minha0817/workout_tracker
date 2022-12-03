@@ -4,7 +4,6 @@ import ExerciseCard from "./components/ExerciseCard";
 import AddIcon from "@mui/icons-material/Add";
 import { Fab, Stack, Typography } from "@mui/material";
 import Axios from "axios";
-import EditForm from "./components/ExerciseCard/EditForm";
 import CreateForm from "./components/ExerciseCard/CreateForm";
 
 export default function Workout(props) {
@@ -14,51 +13,47 @@ export default function Workout(props) {
   // Capture current workout id
   const workoutId = useParams().id;
   useEffect(() => {
-    // Fetch exercises that belong to current workout
-    Axios.get(`/api/exercises?workoutId=${workoutId}`)
-      .then((result) => {
+    Promise.all([
+      // Fetch exercises that belong to current workout
+      Axios.get(`/api/exercises?workoutId=${workoutId}`),
+      // Fetch current workout info
+      Axios.get(`/api/workouts/${workoutId}`),
+    ])
+      .then((all) => {
         // Store in state
-        setExercises(result.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    // Fetch current workout info
-    Axios.get(`/api/workouts/${workoutId}`)
-      .then((result) => {
-        // Store in state
-        setWorkoutData(result.data[0]);
+        setExercises(all[0].data);
+        setWorkoutData(all[1].data);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
 
-  // State and handler for toggling editing "mode"
+  // State for toggling Create new exercise form
   const [adding, setAdding] = useState(false);
-
-  // Function to save changes and return to viewing "mode"
-  const saveEdits = () => {
-    // Send request and then
-  };
 
   return (
     <>
       <Typography variant="h4" gutterBottom>
         {workoutData.name}
       </Typography>
-
       <Stack
         direction="column"
         justifyContent="flex-start"
         alignItems="stretch"
         spacing={6}
         maxWidth={1200}
-        minWidth={500}
+        minWidth={380}
       >
         {/* Array of Exercise Cards */}
-        {exercises.map((exercise) => (
-          <ExerciseCard {...exercise} key={exercise.id} />
+        {exercises.map((exercise, index) => (
+          <ExerciseCard
+            {...exercise}
+            key={exercise.id}
+            index={index}
+            exercisesState={exercises}
+            setExercises={setExercises}
+          />
         ))}
 
         {/* Render Add button unless in addingExercise state */}
@@ -68,6 +63,7 @@ export default function Workout(props) {
             size="medium"
             sx={{ alignSelf: "center" }}
             onClick={setAdding}
+            color="primary"
           >
             <AddIcon />
           </Fab>
