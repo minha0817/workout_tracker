@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 import {
   Box,
@@ -81,7 +82,7 @@ export default function ResponsiveDrawer(props) {
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {/* ARRAY OF PROGRAMS */}
+            {/* Array of programs */}
             {props.programs.map((program) => (
               <Link
                 to={`/program/${program.id}`}
@@ -90,7 +91,7 @@ export default function ResponsiveDrawer(props) {
               >
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemIcon>
-                    <StarBorder />
+                    <ArrowRightIcon />
                   </ListItemIcon>
                   <ListItemText primary={program.name} />
                 </ListItemButton>
