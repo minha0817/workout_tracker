@@ -38,15 +38,14 @@ export default function Appbar(props) {
         </IconButton>
 
         <Typography
-          variant="h6"
-          component="div"
+          variant="subtitle1"
           sx={{ flexGrow: 100 }}
           onClick={handleClick}
         >
-          Workout Tracker
+          FitHub
         </Typography>
 
-        <Avatar alt="Jason Ling" src="images/pikachu.png" />
+        <Avatar alt="User Avatar" src="images/pikachu.png" sx={{ mr: 1 }} />
         <Button color="inherit">Logout</Button>
       </Toolbar>
     </AppBar>

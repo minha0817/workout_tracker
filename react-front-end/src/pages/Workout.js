@@ -57,6 +57,7 @@ export default function Workout(props) {
             size="medium"
             sx={{ alignSelf: "center" }}
             onClick={setAdding}
+            color="primary"
           >
             <AddIcon />
           </Fab>

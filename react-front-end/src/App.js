@@ -3,6 +3,33 @@ import axios from "axios";
 import { Outlet, useOutletContext } from "react-router-dom";
 import "./App.css";
 import ResponsiveDrawer from "./pages/components/ResponsiveDrawer";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: ["Helvetica", "Arial", "Tahoma", "sans-serif"].join(","),
+    subtitle1: {
+      fontFamily: ["Bayon", "Helvetica", "Arial", "Tahoma", "sans-serif"].join(
+        ","
+      ),
+      fontSize: "2rem",
+    },
+  },
+  palette: {
+    primary: {
+      light: "#3a6284",
+      main: "#003857",
+      dark: "#00122e",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#ffbc58",
+      main: "#ea8c26",
+      dark: "#b25e00",
+      contrastText: "#000",
+    },
+  },
+});
 
 export default function App() {
   const [programs, setPrograms] = useState([]);
@@ -30,16 +57,14 @@ export default function App() {
       });
   };
 
-
   // When App initially loads, fetch data and store in state
   useEffect(() => {
     getAndSetPrograms();
     getAndSetWorkouts();
-
   }, []);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <ResponsiveDrawer programs={programs} setPrograms={setPrograms}>
         <Outlet
           context={{
@@ -52,7 +77,7 @@ export default function App() {
           }}
         />
       </ResponsiveDrawer>
-    </>
+    </ThemeProvider>
   );
 }
 
