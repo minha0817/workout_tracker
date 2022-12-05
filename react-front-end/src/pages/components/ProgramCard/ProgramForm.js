@@ -5,23 +5,38 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 
-
 //ProgramForm for creating and editing program
 export default function ProgramForm(props) {
+
+  
+
+
+
+
   return (
     <>
       <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
+          "& > :not(style)": {
+            m: 1,
+            maxWidth: "50%",
+            minWidth: "30%",
+            width: "30%",
+          },
         }}
         noValidate
         autoComplete="off"
       >
         <TextField
-          id="standard-basic"
+          id="outlined-basic"
+          variant="outlined"
+          fullWidth
+          sx={{ mb: "2rem" }}
           label="Program Name"
-          variant="standard"
           name="programName"
           type="text"
           placeholder="Enter Program Name"
@@ -30,9 +45,10 @@ export default function ProgramForm(props) {
         />
 
         <TextField
-          id="standard-textarea"
+          id="outlined-basic"
+          variant="outlined"
+          fullWidth
           label="Description"
-          variant="standard"
           multiline
           name="Description"
           type="text"
@@ -46,7 +62,14 @@ export default function ProgramForm(props) {
             label="Start Date"
             value={props.startDate}
             onChange={props.startDateCallback}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                fullWidth
+                {...params}
+              />
+            )}
           />
         </LocalizationProvider>
 
@@ -55,7 +78,14 @@ export default function ProgramForm(props) {
             label="End Date"
             value={props.endDate}
             onChange={props.endDateCallback}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                fullWidth
+                {...params}
+              />
+            )}
           />
         </LocalizationProvider>
       </Box>
@@ -77,6 +107,5 @@ export default function ProgramForm(props) {
         </Button>
       </Box>
     </>
-  )
+  );
 }
-
