@@ -7,12 +7,17 @@ import {
   CardActions,
   CardContent,
   Typography,
+  InputAdornment,
+  Tooltip,
+  Link
 } from "@mui/material";
 import Axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Confirmation from "../Confirmation";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 import CloseIcon from "@mui/icons-material/Close";
+import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded";
+
 
 //A form for creating, editing workout
 export default function WorkoutForm(props) {
@@ -136,6 +141,21 @@ export default function WorkoutForm(props) {
               multiline
               value={state.image}
               onChange={imageCallback}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Link
+                      href="https://www.pexels.com/"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Tooltip title="Pexels.com" arrow placement="right">
+                        <CameraAltRoundedIcon />
+                      </Tooltip>
+                    </Link>
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="standard-basic"
