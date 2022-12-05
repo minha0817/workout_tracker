@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -34,12 +34,6 @@ export default function ResponsiveDrawer(props) {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
-  };
-
-  const navigate = useNavigate();
-  // Main logo click handler
-  const onClickEvent = () => {
-    navigate("/dashboard");
   };
 
   const handleEvent = (event) => {
