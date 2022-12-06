@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { usePrograms } from "../../../App";
 import ProgramForm from "./ProgramForm";
-import { Button, Box } from "@mui/material";
-import SaveSharpIcon from "@mui/icons-material/SaveSharp";
+import { Typography } from "@mui/material";
 
 export default function AddProgram() {
   //State for name and description
@@ -37,12 +36,8 @@ export default function AddProgram() {
     validationObject.description = addProgramData.description
       ? ""
       : "Description - required";
-    validationObject.startDate = startDate
-      ? ""
-      : "Start Date - required";
-    validationObject.endDate = endDate
-      ? ""
-      : "End Date - required";
+    validationObject.startDate = startDate ? "" : "Start Date - required";
+    validationObject.endDate = endDate ? "" : "End Date - required";
 
     setErrorMessages({ ...errorMessages, ...validationObject });
 
@@ -108,7 +103,9 @@ export default function AddProgram() {
 
   return (
     <>
-      <h1>Add program</h1>
+      <Typography variant="h4" gutterBottom>
+        Add program
+      </Typography>
       <ProgramForm
         nameCallback={addName}
         name={addProgramData.name}

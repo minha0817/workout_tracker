@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   Box,
@@ -87,7 +87,6 @@ export default function ExerciseCard(props) {
     setRestError(false);
   };
 
-  const navigate = useNavigate();
   const submitEditForm = () => {
     resetAllErrors();
     if (!name) {

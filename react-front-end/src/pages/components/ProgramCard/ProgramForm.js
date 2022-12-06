@@ -109,17 +109,21 @@ export default function ProgramForm(props) {
           sx={{
             display: "flex",
             justifyContent: "flex-end",
-            flexDirection: "row",
           }}
         >
-          <Button color="secondary" size="small" onClick={props.cancelCallback}>
-            Cancel
-          </Button>
           <CardActions disableSpacing>
+            <Button
+              variant="outlined"
+              color="secondary"
+              size="small"
+              onClick={props.cancelCallback}
+            >
+              Cancel
+            </Button>
             <Button
               variant="contained"
               size="small"
-              sx={{ ml: "auto" }}
+              sx={{ ml: "10px" }}
               startIcon={<SaveSharpIcon />}
               onClick={props.saveCallback}
             >

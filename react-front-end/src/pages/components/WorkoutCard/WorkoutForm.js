@@ -15,7 +15,6 @@ import Axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Confirmation from "../Confirmation";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
-import CloseIcon from "@mui/icons-material/Close";
 import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded";
 
 //A form for creating, editing workout
@@ -236,6 +235,7 @@ export default function WorkoutForm(props) {
             </div>
             <CardActions disableSpacing>
               <Button
+                variant="outlined"
                 color="secondary"
                 size="small"
                 sx={{ ml: "auto" }}
@@ -248,7 +248,7 @@ export default function WorkoutForm(props) {
                 variant="contained"
                 size="small"
                 startIcon={<SaveSharpIcon />}
-                sx={{ ml: "auto", margin: "10px" }}
+                sx={{ ml: "10px" }}
                 onClick={saveWorkout}
               >
                 Save
