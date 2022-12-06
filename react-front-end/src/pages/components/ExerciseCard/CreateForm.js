@@ -262,12 +262,12 @@ export default function ExerciseCard(props) {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                label={"Instructions"}
-                multiline
                 fullWidth
+                label={"Instructions"}
+                sx={{ mb: "2rem" }}
+                multiline
                 value={instructions}
                 onChange={(e) => setInstructions(e.target.value)}
-                sx={{ mb: "2rem" }}
               />
               <TextField
                 id="outlined-basic"
