@@ -37,7 +37,7 @@ export default function Appbar(props) {
         </Link>
         <Avatar
           alt="User Avatar"
-          src="images/pikachu.png"
+          src="https://images.unsplash.com/photo-1627693685101-687bf0eb1222?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           sx={{ mr: 1, ml: "auto" }}
         />
         <Button color="inherit">Logout</Button>
