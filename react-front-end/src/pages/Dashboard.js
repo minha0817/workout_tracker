@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { Grid, Paper, Container, Box, Button } from "@mui/material";
+import { Grid, Paper, Box, Button } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Heatmap } from "./components/Dashboard/Heatmap";
 import { UserEditForm } from "./components/Dashboard/UserEditForm";
 import EditIcon from "@mui/icons-material/Edit";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import TaskAltRoundedIcon from "@mui/icons-material/TaskAltRounded";
 
 export default function Dashboard() {
   const [dashboard, setDashboard] = useState([]);
   const [userEdit, setUserEdit] = useState(false);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [logBtnMsg, setLogBtnMsg] = useState("Worked out?");
 
   // Grabs info from both api
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function Dashboard() {
   // Check to see if User reached their goal weight
   const reachGoal = function () {
     if (dashboard.current_weight - dashboard.goal_weight === 0) {
-      return "Congratulations on reaching your achievement";
+      return "Congratulations on reaching your goal!";
     } else {
       return `Currently ${Math.abs(
         dashboard.current_weight - dashboard.goal_weight
@@ -64,6 +65,7 @@ export default function Dashboard() {
     const value = 1;
     Axios.post("/api/workoutlogs", { user_id, value, day })
       .then((result) => {
+        setLogBtnMsg("Good job!");
         getHeatmap();
       })
       .catch((err) => {
@@ -73,48 +75,49 @@ export default function Dashboard() {
 
   return (
     <>
-      <Container>
-        <h1 display="flex" justifycontent="center">
-          Welcome to your Dashboard {dashboard.first_name}{" "}
-          <Button
-            variant="outlined"
-            startIcon={<EditIcon />}
-            size="small"
-            sx={{ ml: "auto" }}
-            s
-            onClick={() => {
-              if (userEdit) {
-                setUserEdit(false);
-              } else {
-                setUserEdit(true);
-              }
-            }}
+      <Box maxWidth={"1100px"}>
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"flex-start"}
+        >
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{ fontSize: { xs: "1.5rem", sm: "1.5rem", md: "2.125rem" } }}
           >
-            Edit
-          </Button>{" "}
-          {userEdit && (
-            <UserEditForm
-              show={userEdit}
-              showState={setUserEdit}
-              getDashboard={getDashboard}
-            />
+            Welcome to your dashboard, {dashboard.first_name}
+          </Typography>
+          {!userEdit && (
+            <Button
+              variant="outlined"
+              startIcon={<EditIcon />}
+              size="small"
+              onClick={() => {
+                setUserEdit(!userEdit);
+              }}
+            >
+              Update goals
+            </Button>
           )}
-        </h1>
+        </Box>
+
+        {userEdit && (
+          <UserEditForm
+            show={userEdit}
+            showState={setUserEdit}
+            getDashboard={getDashboard}
+          />
+        )}
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
             <Paper>
-              <Card elevation={3}>
+              <Card elevation={3} sx={{ minHeight: "70px" }}>
                 <CardContent>
-                  <Typography
-                    variant="h5"
-                    component="div"
-                  >
+                  <Typography variant="h5" component="div">
                     Goal: {dashboard.goal}
                   </Typography>
-                  <Typography
-                    sx={{ mb: 1.5 }}
-                    color="text.secondary"
-                  >
+                  <Typography sx={{ mb: 1 }} color="text.secondary">
                     {reachGoal()}
                   </Typography>
                 </CardContent>
@@ -134,7 +137,7 @@ export default function Dashboard() {
                     Current Weight
                   </Typography>
                   <Typography
-                    sx={{ mb: 1.5 }}
+                    sx={{ mb: 1 }}
                     color="text.secondary"
                     display="flex"
                     justifycontent="center"
@@ -155,10 +158,10 @@ export default function Dashboard() {
                     display="flex"
                     justifycontent="center"
                   >
-                    Goal Weight
+                    Target Weight
                   </Typography>
                   <Typography
-                    sx={{ mb: 1.5 }}
+                    sx={{ mb: 1 }}
                     color="text.secondary"
                     display="flex"
                     justifycontent="center"
@@ -179,17 +182,17 @@ export default function Dashboard() {
                     display="flex"
                     justifycontent="center"
                   >
-                    Fitness Tracker{" "}
+                    Workout History
                     <Button
-                      variant="outlined"
-                      startIcon={<AddCircleOutlineIcon />}
+                      variant="contained"
+                      startIcon={<TaskAltRoundedIcon />}
                       size="small"
                       sx={{ ml: "auto" }}
                       onClick={() => {
                         WorkoutSubmitHandler();
                       }}
                     >
-                      Tracker
+                      {logBtnMsg}
                     </Button>
                   </Typography>
                 </CardContent>
@@ -206,7 +209,7 @@ export default function Dashboard() {
             </Paper>
           </Grid>
         </Grid>
-      </Container>
+      </Box>
     </>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Stack } from "@mui/material";
 import WorkoutCard from "./components/WorkoutCard/WorkoutCard";
-import { Button, Fab, Box } from "@mui/material";
+import { Fab, Box } from "@mui/material";
 import ProgramCard from "./components/ProgramCard/ProgramCard";
 import { usePrograms } from "../App";
 import axios from "axios";
