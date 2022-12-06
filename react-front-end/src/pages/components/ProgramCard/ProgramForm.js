@@ -20,8 +20,8 @@ export default function ProgramForm(props) {
           "& > :not(style)": {
             m: 1,
             maxWidth: "80%",
-            minWidth: "60%",
-            width: "60%",
+            minWidth: "70%",
+            width: "70",
           },
         }}
         noValidate

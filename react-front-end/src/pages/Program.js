@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Stack } from "@mui/material";
 import WorkoutCard from "./components/WorkoutCard/WorkoutCard";
-import { Button, Fab } from "@mui/material";
+import { Button, Fab, Box } from "@mui/material";
 import ProgramCard from "./components/ProgramCard/ProgramCard";
 import { usePrograms } from "../App";
 import axios from "axios";
@@ -132,14 +132,16 @@ export default function Program() {
             getWorkout={getWorkout}
           />
         ) : (
-          <Fab
-            color="primary"
-            aria-label="add"
-            // sx={{ alignSelf: "center"}}
-            size="medium"
+          <Box display="flex" justifyContent="center" alignItems="center"  sx={{justifyContent: "center", width: "70%"}}
           >
-            <AddIcon onClick={handleWorkoutEditMode} />
-          </Fab>
+            <Fab
+              color="primary"
+              aria-label="add"
+              size="medium"
+            >
+              <AddIcon onClick={handleWorkoutEditMode} />
+            </Fab>
+          </Box>
         )}
       </Stack>
     </>

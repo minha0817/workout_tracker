@@ -6,7 +6,7 @@ import {
   TextField,
   CardActions,
   CardContent,
-  Typography,
+  IconButton,
   InputAdornment,
   Tooltip,
   Link,
@@ -135,7 +135,7 @@ export default function WorkoutForm(props) {
 
   return (
     <>
-      <Card display="flex" sx={{width: "70%"}}>
+      <Card display="flex" sx={{ width: "70%" }}>
         <Box
           sx={{
             display: "flex",
@@ -174,7 +174,7 @@ export default function WorkoutForm(props) {
                 // placeholder={state.duration}
                 value={state.duration || ""}
                 InputProps={{
-                  inputProps: { min: 0 }
+                  inputProps: { min: 0 },
                 }}
                 onChange={durationCallback}
                 helperText={durationError ? durationError : ""}
@@ -216,7 +216,8 @@ export default function WorkoutForm(props) {
                 error={!!imageError}
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment position="end"
+                    <InputAdornment
+                      position="end"
                       sx={{ position: "relative", top: "4px" }}
                     >
                       <Link
@@ -254,13 +255,16 @@ export default function WorkoutForm(props) {
               </Button>
 
               {props.edit ? (
-                <DeleteIcon
+                <IconButton
+                  aria-label="delete"
                   size="large"
                   color="error"
                   onClick={() => {
                     setConfirmOpen(true);
                   }}
-                />
+                >
+                  <DeleteIcon />
+                </IconButton>
               ) : null}
               {confirmOpen ? (
                 <Confirmation
