@@ -235,6 +235,7 @@ export default function WorkoutForm(props) {
             </div>
             <CardActions disableSpacing>
               <Button
+                variant="outlined"
                 color="secondary"
                 size="small"
                 sx={{ ml: "auto" }}
@@ -247,7 +248,7 @@ export default function WorkoutForm(props) {
                 variant="contained"
                 size="small"
                 startIcon={<SaveSharpIcon />}
-                sx={{ ml: "auto", margin: "10px" }}
+                sx={{ ml: "10px" }}
                 onClick={saveWorkout}
               >
                 Save

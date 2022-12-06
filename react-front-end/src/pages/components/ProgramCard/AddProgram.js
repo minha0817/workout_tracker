@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { usePrograms } from "../../../App";
 import ProgramForm from "./ProgramForm";
+import { Typography } from "@mui/material";
 
 export default function AddProgram() {
   //State for name and description
@@ -102,7 +103,9 @@ export default function AddProgram() {
 
   return (
     <>
-      <h1>Add program</h1>
+      <Typography variant="h4" gutterBottom>
+        Add program
+      </Typography>
       <ProgramForm
         nameCallback={addName}
         name={addProgramData.name}

@@ -29,8 +29,22 @@ export default function Confirmation(props) {
           {`Are you sure you want to delete this ${props.resource}?`}
         </DialogTitle>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={confirmDelete} autoFocus>
+          <Button
+            variant="outlined"
+            color="secondary"
+            size="small"
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
+
+          <Button
+            variant="contained"
+            size="small"
+            sx={{ ml: "10px" }}
+            onClick={confirmDelete}
+            autoFocus
+          >
             Confirm
           </Button>
         </DialogActions>
