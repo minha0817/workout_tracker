@@ -28,6 +28,7 @@ export default function Program() {
   };
 
   const handleDelete = () => {
+    console.log('hi')
     setDeleteProgram(true);
     handleConfirmOpen();
   };
@@ -136,7 +137,7 @@ export default function Program() {
           <Fab
             color="primary"
             aria-label="add"
-            sx={{ alignSelf: "center" }}
+            // sx={{ alignSelf: "center"}}
             size="medium"
           >
             <AddIcon onClick={handleWorkoutEditMode} />

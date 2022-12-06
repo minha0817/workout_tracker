@@ -135,7 +135,7 @@ export default function WorkoutForm(props) {
 
   return (
     <>
-      <Card display="flex">
+      <Card display="flex" sx={{width: "70%"}}>
         <Box
           sx={{
             display: "flex",
@@ -158,7 +158,7 @@ export default function WorkoutForm(props) {
                 onChange={nameCallback}
                 sx={{ mb: "2rem" }}
                 // sx={{ maxWidth: "80%", overflow: "visible" }}
-                helperText={nameError ? nameError : "Name"}
+                helperText={nameError ? nameError : ""}
                 error={nameError}
               />
             </div>
@@ -170,11 +170,11 @@ export default function WorkoutForm(props) {
                 fullWidth
                 sx={{ mb: "2rem" }}
                 label="Duration"
-                type="text"
+                type="number"
                 // placeholder={state.duration}
                 value={state.duration}
                 onChange={durationCallback}
-                helperText={durationError ? durationError : "Duration"}
+                helperText={durationError ? durationError : ""}
                 error={durationError}
               />
             </div>
@@ -192,7 +192,7 @@ export default function WorkoutForm(props) {
                 multiline
                 value={state.description}
                 onChange={descriptionCallback}
-                helperText={descriptionError ? descriptionError : "Description"}
+                helperText={descriptionError ? descriptionError : ""}
                 error={descriptionError}
               />
             </div>
@@ -209,11 +209,13 @@ export default function WorkoutForm(props) {
                 multiline
                 value={state.image}
                 onChange={imageCallback}
-                helperText={imageError ? imageError : "Image"}
+                helperText={imageError ? imageError : ""}
                 error={imageError}
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment position="end">
+                    <InputAdornment
+                      sx={{ position: "relative", top: "4px" }}
+                    >
                       <Link
                         href="https://www.pexels.com/"
                         target="_blank"
@@ -233,7 +235,6 @@ export default function WorkoutForm(props) {
                 color="secondary"
                 size="small"
                 sx={{ ml: "auto" }}
-                // startIcon={<CloseIcon />}
                 onClick={handleCancel}
               >
                 Cancel
@@ -243,7 +244,7 @@ export default function WorkoutForm(props) {
                 variant="contained"
                 size="small"
                 startIcon={<SaveSharpIcon />}
-                sx={{ ml: "auto" }}
+                sx={{ ml: "auto", margin: "10px" }}
                 onClick={saveWorkout}
               >
                 Save

@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Box, TextField } from "@mui/material";
+import { Box, Button, TextField, IconButton, CardActions } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 //ProgramForm for creating and editing program
 export default function ProgramForm(props) {
@@ -13,13 +14,14 @@ export default function ProgramForm(props) {
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
+        // alignItems="center"
         component="form"
         sx={{
           "& > :not(style)": {
             m: 1,
-            maxWidth: "50%",
-            minWidth: "30%",
-            width: "30%",
+            maxWidth: "80%",
+            minWidth: "60%",
+            width: "60%",
           },
         }}
         noValidate
@@ -49,64 +51,92 @@ export default function ProgramForm(props) {
           name="Description"
           type="text"
           placeholder="Enter Description"
-          helperText={props.errorMessages.description ? props.errorMessages.description : ""}
+          helperText={
+            props.errorMessages.description
+              ? props.errorMessages.description
+              : ""
+          }
           error={!!props.errorMessages.description}
           value={props.description}
           onChange={props.descriptionCallback}
         />
 
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="Start Date"
-            value={props.startDate}
-            onChange={props.startDateCallback}
-            renderInput={(params) => (
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                fullWidth
-                helperText={props.errorMessages.startDate ? props.errorMessages.startDate : ""}
-                error={!!props.errorMessages.startDate}
-                {...params}
-              />
-            )}
-          />
-        </LocalizationProvider>
-
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="End Date"
-            value={props.endDate}
-            onChange={props.endDateCallback}
-            renderInput={(params) => (
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                helperText={props.errorMessages.endDate ? props.errorMessages.endDate : ""}
-                error={!!props.errorMessages.endDate}
-                fullWidth
-                {...params}
-              />
-            )}
-          />
-        </LocalizationProvider>
-      </Box>
-
-      <Box sx={{ "& button": { m: 1 } }}>
-        <Button color="secondary" size="small" onClick={props.cancel}>
-          Cancel
-        </Button>
-
-        <Button
-          variant="contained"
-          // color="success"
-          size="small"
-          sx={{ ml: "auto" }}
-          startIcon={<SaveSharpIcon />}
-          onClick={props.save}
+        <Box display="flex" justifyContent="space-between">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="Start Date"
+              value={props.startDate}
+              onChange={props.startDateCallback}
+              renderInput={(params) => (
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  sx={{ width: "49%" }}
+                  helperText={
+                    props.errorMessages.startDate
+                      ? props.errorMessages.startDate
+                      : ""
+                  }
+                  error={!!props.errorMessages.startDate}
+                  {...params}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="End Date"
+              value={props.endDate}
+              onChange={props.endDateCallback}
+              renderInput={(params) => (
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  sx={{ width: "49%" }}
+                  helperText={
+                    props.errorMessages.endDate
+                      ? props.errorMessages.endDate
+                      : ""
+                  }
+                  error={!!props.errorMessages.endDate}
+                  {...params}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            flexDirection: "row",
+          }}
         >
-          Save
-        </Button>
+          <Button color="secondary" size="small" onClick={props.cancelCallback}>
+            Cancel
+          </Button>
+          <CardActions disableSpacing>
+            <Button
+              variant="contained"
+              size="small"
+              sx={{ ml: "auto" }}
+              startIcon={<SaveSharpIcon />}
+              onClick={props.saveCallback}
+            >
+              Save
+            </Button>
+            {props.deleteCallback ? (
+              <IconButton
+                aria-label="delete"
+                size="large"
+                color="error"
+                onClick={props.deleteCallback}
+              >
+                <DeleteIcon />
+              </IconButton>
+            ) : null}
+          </CardActions>
+        </Box>
       </Box>
     </>
   );

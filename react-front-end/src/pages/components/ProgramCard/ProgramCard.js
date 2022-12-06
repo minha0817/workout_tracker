@@ -6,16 +6,19 @@ import {
   Box,
   Button,
   Card,
-  CardMedia,
-  Collapse,
   Divider,
-  IconButton,
   CardActions,
   CardContent,
   Typography,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { styled } from "@mui/material/styles";
+
+const ProgramAttribute = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+});
 
 export default function ProgramCard(props) {
   //Get a useOutletContext from App.js
@@ -131,71 +134,88 @@ export default function ProgramCard(props) {
   return (
     <>
       {props.edit ? (
-        <ProgramForm
-          name={name}
-          nameCallback={nameCallback}
-          description={description}
-          descriptionCallback={descriptionCallback}
-          startDate={startDate}
-          startDateCallback={startDateCallback}
-          endDate={endDate}
-          endDateCallback={endDateCallback}
-          cancel={handleCancel}
-          save={editProgram}
-          errorMessages={errorMessages}
-        />
+        <>
+          <Card sx={{ width: "70%" }}>
+            <ProgramForm
+              name={name}
+              nameCallback={nameCallback}
+              description={description}
+              descriptionCallback={descriptionCallback}
+              startDate={startDate}
+              startDateCallback={startDateCallback}
+              endDate={endDate}
+              endDateCallback={endDateCallback}
+              cancelCallback={handleCancel}
+              saveCallback={editProgram}
+              deleteCallback={props.handleDelete}
+              errorMessages={errorMessages}
+            />
+          </Card>
+        </>
       ) : (
         <>
-          <Card>
-            <Box
-              display="flex"
-              flexDirection="row"
-              justifyContent="space-between"
-              width="100%"
+          <Card sx={{ width: "70%" }}>
+            <CardContent
+              sx={{
+                display: "flex",
+                pl: 1,
+                pr: 1,
+                fontSize: { xs: "1rem", sm: "1.5rem" },
+                flexDirection: "column",
+              }}
             >
-              <CardContent>
-                <Typography variant="h5">{props.program.name}</Typography>
-                <Typography variant="p">
-                  Start date :{" "}
-                  {props.program.start_date
-                    ? props.program.start_date.substring(0, 10)
-                    : ""}
-                </Typography>
-                <Divider orientation="vertical" variant="middle" flexItem />
-                <Typography variant="p">
-                  End date :{" "}
-                  {props.program.end_date
-                    ? props.program.end_date.substring(0, 10)
-                    : ""}
-                </Typography>
-                <Divider orientation="vertical" variant="middle" flexItem />
-                <Typography variant="p">
-                  Note : {props.program.description}
-                </Typography>
-                <Divider orientation="vertical" variant="middle" flexItem />
-              </CardContent>
-            </Box>
-            {props.edit ? (
-              <>
-                <DeleteIcon
-                  size="large"
-                  color="error"
-                  onClick={props.handleDelete}
+              <Box display="flex">
+                <ProgramAttribute>
+                  <Typography variant="h4">{props.program.name}</Typography>
+                </ProgramAttribute>
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  sx={{ marginLeft: "35px", marginRight: "35px" }}
                 />
-              </>
-            ) : (
-              <CardActions disableSpacing>
-                <Button
-                  variant="outlined"
-                  startIcon={<EditIcon />}
-                  size="small"
-                  sx={{ ml: "auto" }}
-                  onClick={() => props.setEditMode(true)}
-                >
-                  Edit
-                </Button>
-              </CardActions>
-            )}
+                <Box>
+                  <Typography variant="h6">Start Date</Typography>
+                  <Typography variant="h5">
+                    {props.program.start_date
+                      ? props.program.start_date.substring(0, 10)
+                      : ""}
+                  </Typography>
+                </Box>
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  sx={{ marginLeft: "35px", marginRight: "35px" }}
+                />
+                <Box>
+                  <Typography variant="h6">End Date</Typography>
+                  <Typography variant="p">
+                    {props.program.end_date
+                      ? props.program.end_date.substring(0, 10)
+                      : ""}
+                  </Typography>
+                </Box>
+              </Box>
+              <Box>
+                <Typography variant="h6">Description</Typography>
+                <Typography variant="p" sx={{ fontSize: "1rem" }}>
+                  {props.program.description}
+                </Typography>
+              </Box>
+            </CardContent>
+            {/* <Divider orientation="vertical" variant="middle" flexItem /> */}
+            <CardActions disableSpacing>
+              <Button
+                variant="outlined"
+                startIcon={<EditIcon />}
+                size="small"
+                sx={{ ml: "auto" }}
+                onClick={() => props.setEditMode(true)}
+              >
+                Edit
+              </Button>
+            </CardActions>
           </Card>
         </>
       )}
