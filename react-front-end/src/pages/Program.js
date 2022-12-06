@@ -28,7 +28,6 @@ export default function Program() {
   };
 
   const handleDelete = () => {
-    console.log('hi')
     setDeleteProgram(true);
     handleConfirmOpen();
   };
@@ -77,7 +76,6 @@ export default function Program() {
   // };
 
   const handleProgramEditMode = () => {
-    console.log('hit')
     setProgramEditMode(false);
   };
 

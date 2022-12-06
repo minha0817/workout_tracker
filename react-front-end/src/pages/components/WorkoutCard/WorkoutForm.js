@@ -154,12 +154,12 @@ export default function WorkoutForm(props) {
                 type="text"
                 multiline
                 fullWidth
-                value={state.name}
+                value={state.name || ""}
                 onChange={nameCallback}
                 sx={{ mb: "2rem" }}
                 // sx={{ maxWidth: "80%", overflow: "visible" }}
                 helperText={nameError ? nameError : ""}
-                error={nameError}
+                error={!!nameError}
               />
             </div>
 
@@ -172,10 +172,13 @@ export default function WorkoutForm(props) {
                 label="Duration"
                 type="number"
                 // placeholder={state.duration}
-                value={state.duration}
+                value={state.duration || ""}
+                InputProps={{
+                  inputProps: { min: 0 }
+                }}
                 onChange={durationCallback}
                 helperText={durationError ? durationError : ""}
-                error={durationError}
+                error={!!durationError}
               />
             </div>
 
@@ -188,12 +191,12 @@ export default function WorkoutForm(props) {
                 label="Description"
                 name="Workout description"
                 type="text"
-                placeholder={state.description}
+                placeholder={state.description || ""}
                 multiline
                 value={state.description}
                 onChange={descriptionCallback}
                 helperText={descriptionError ? descriptionError : ""}
-                error={descriptionError}
+                error={!!descriptionError}
               />
             </div>
 
@@ -207,13 +210,13 @@ export default function WorkoutForm(props) {
                 type="text"
                 placeholder={state.image}
                 multiline
-                value={state.image}
+                value={state.image || ""}
                 onChange={imageCallback}
                 helperText={imageError ? imageError : ""}
-                error={imageError}
+                error={!!imageError}
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment
+                    <InputAdornment position="end"
                       sx={{ position: "relative", top: "4px" }}
                     >
                       <Link

@@ -162,6 +162,7 @@ export default function ProgramCard(props) {
                 pr: 1,
                 fontSize: { xs: "1rem", sm: "1.5rem" },
                 flexDirection: "column",
+                paddingLeft: "20px"
               }}
             >
               <Box display="flex">

@@ -45,7 +45,6 @@ export default function AddProgram() {
       : "End Date - required";
 
     setErrorMessages({ ...errorMessages, ...validationObject });
-    console.log(validationObject, "validationObject")
 
     if (
       validationObject.name ||
