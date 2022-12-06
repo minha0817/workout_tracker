@@ -4,7 +4,7 @@ const router = Express.Router();
 
 // create the routes for the workout logs
 
-
+//Read - Get all workOut logs for a user
 router.get('/', (req,res) => {
   workoutLogQueries.getWorkOutLogsByUserId(1)
     .then(result => {
@@ -14,12 +14,10 @@ router.get('/', (req,res) => {
       err.message;
     })
 });
-
+// Create - Add too Workout Logs
 router.post('/', (req,res) => {
-  console.log("details", req.body)
   workoutLogQueries.addWorkoutLogs(req.body)
     .then(result => {
-      console.log("backend", result);
       res.json(result);
     })
     .catch(err => {
