@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import {
-  Button,
-  Box,
-  Container,
-  Typography,
-  TextField
-} from "@mui/material";
-
+import { Button, Container, Typography, Box, TextField } from "@mui/material";
+import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 
 export const UserEditForm = (props) => {
   const [goal, setGoal] = useState("");
@@ -49,7 +43,8 @@ export const UserEditForm = (props) => {
     }
   };
 
-    return ( props.show &&
+  return (
+    props.show && (
       <Container size="sm">
         <Typography
           variant="h6"
@@ -86,13 +81,13 @@ export const UserEditForm = (props) => {
             margin="normal"
             display="block"
             variant="outlined"
-            // placeholder="Enter Current Weight"
+            placeholder="Enter Current Weight"
             color="secondary"
             type="number"
             value={currentWeight}
             fullWidth
             error={currentWeightError}
-            // helperText={ currentWeightError === true ? "Current Weight -required" : ""}
+            helperText={ currentWeightError === true ? "Current Weight -required" : ""}
           />
           <TextField
             onChange={(e) => setGoalWeight(e.target.value)}
@@ -110,19 +105,29 @@ export const UserEditForm = (props) => {
             error={goalWeightError}
             helperText={goalWeightError === true ? "Goal Weight -required" : ""}
           />
-          <Box display="flex"
-            justifycontent="flex-end">
+          <Box
+            display="flex"
+            justifyContent= "flex-end">
+          <Button
+            variant="outlined"
+            color="secondary"
+            size="small"
+            onClick={() => props.showState(false)}
+          >
+            Cancel
+          </Button>
           <Button
             type="submit"
-            color="secondary"
             variant="contained"
             size="small"
             sx={{ ml: "auto" }}
+            startIcon={<SaveSharpIcon />}
           >
             Save
           </Button>
           </Box>
         </form>
       </Container>
-    );
+    )
+  );
 };
