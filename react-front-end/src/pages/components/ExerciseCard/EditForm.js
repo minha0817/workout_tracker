@@ -125,8 +125,15 @@ export default function ExerciseCard(props) {
     // Send request to update
     Axios.put(`/api/exercises/${exerciseId}`, exerciseData)
       .then((response) => {
-        // Refresh current page
-        navigate(0);
+        // Build updated state (array) of exercises
+        const updatedState = [...props.exercisesState];
+        updatedState.splice(props.index, 1, response.data);
+
+        // Exit edit mode
+        props.setEdit(false);
+
+        // Set updated state
+        props.setExercises((prev) => updatedState);
       })
       .catch((e) => {
         console.log(e);
@@ -138,11 +145,11 @@ export default function ExerciseCard(props) {
     Axios.delete(`/api/exercises/${exerciseId}`)
       .then((response) => {
         // Build updated state (array) of exercises
-        const newState = [...props.exercisesState];
-        newState.splice(props.index, 1);
+        const updatedState = [...props.exercisesState];
+        updatedState.splice(props.index, 1);
 
         // Set updated state
-        props.setExercises(newState);
+        props.setExercises((prev) => updatedState);
       })
       .catch((e) => console.log(e));
   };
@@ -325,7 +332,6 @@ export default function ExerciseCard(props) {
                   aria-label="delete"
                   size="large"
                   color="error"
-                  // onClick={deleteExercise}
                   onClick={() => setConfirmOpen(true)}
                 >
                   <DeleteIcon />
