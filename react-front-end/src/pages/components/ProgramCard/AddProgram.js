@@ -11,6 +11,13 @@ export default function AddProgram() {
     description: "",
   });
 
+  const [errorMessages, setErrorMessages] = useState({
+    name: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+  });
+
   //Use a UseOutletContext from App.js
   const { getAndSetPrograms } = usePrograms();
 
@@ -22,6 +29,30 @@ export default function AddProgram() {
   const navigate = useNavigate();
 
   const addProgram = () => {
+    const validationObject = {};
+
+    validationObject.name = addProgramData.name ? "" : "Name - required";
+    validationObject.description = addProgramData.description
+      ? ""
+      : "Description - required";
+    validationObject.startDate = addProgramData.startDate
+      ? ""
+      : "Start Date - required";
+    validationObject.endDate = addProgramData.endDate
+      ? ""
+      : "End Date - required";
+
+    setErrorMessages({ ...errorMessages, ...validationObject });
+
+    if (
+      validationObject.name ||
+      validationObject.description ||
+      validationObject.startDate ||
+      validationObject.endDate
+    ) {
+      return;
+    }
+
     //Assemble program data object
     const newProgramFormData = {
       ...addProgramData,
@@ -87,6 +118,7 @@ export default function AddProgram() {
         endDateCallback={addEndDate}
         cancel={handleCancel}
         save={addProgram}
+        errorMessages={errorMessages}
       />
     </>
   );

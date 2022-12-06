@@ -7,12 +7,6 @@ import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 
 //ProgramForm for creating and editing program
 export default function ProgramForm(props) {
-
-  
-
-
-
-
   return (
     <>
       <Box
@@ -40,6 +34,8 @@ export default function ProgramForm(props) {
           name="programName"
           type="text"
           placeholder="Enter Program Name"
+          helperText={props.errorMessages.name ? props.errorMessages.name : ""}
+          error={!!props.errorMessages.name}
           value={props.name}
           onChange={props.nameCallback}
         />
@@ -53,6 +49,8 @@ export default function ProgramForm(props) {
           name="Description"
           type="text"
           placeholder="Enter Description"
+          helperText={props.errorMessages.description ? props.errorMessages.description : ""}
+          error={!!props.errorMessages.description}
           value={props.description}
           onChange={props.descriptionCallback}
         />
@@ -67,6 +65,8 @@ export default function ProgramForm(props) {
                 id="outlined-basic"
                 variant="outlined"
                 fullWidth
+                helperText={props.errorMessages.startDate ? props.errorMessages.startDate : ""}
+                error={!!props.errorMessages.startDate}
                 {...params}
               />
             )}
@@ -82,6 +82,8 @@ export default function ProgramForm(props) {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
+                helperText={props.errorMessages.endDate ? props.errorMessages.endDate : ""}
+                error={!!props.errorMessages.endDate}
                 fullWidth
                 {...params}
               />

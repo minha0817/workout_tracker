@@ -29,6 +29,13 @@ export default function ProgramCard(props) {
   //State for enddate
   const [endDate, setEndDate] = useState("");
 
+  const [errorMessages, setErrorMessages] = useState({
+    name: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+  });
+
   //If it has a value && one of the dependency is changed, it sets data.
   useEffect(() => {
     if (props.program.name) {
@@ -54,6 +61,24 @@ export default function ProgramCard(props) {
   ]);
 
   const editProgram = () => {
+    const validationObject = {};
+
+    validationObject.name = name ? "" : "Name - required";
+    validationObject.description = description ? "" : "Description - required";
+    validationObject.startDate = startDate ? "" : "Start Date - required";
+    validationObject.endDate = endDate ? "" : "End Date - required";
+
+    setErrorMessages({ ...errorMessages, ...validationObject });
+
+    if (
+      validationObject.name ||
+      validationObject.description ||
+      validationObject.startDate ||
+      validationObject.endDate
+    ) {
+      return;
+    }
+
     //Assemble program data object
     const requestData = {
       name,
@@ -117,6 +142,7 @@ export default function ProgramCard(props) {
           endDateCallback={endDateCallback}
           cancel={handleCancel}
           save={editProgram}
+          errorMessages={errorMessages}
         />
       ) : (
         <>

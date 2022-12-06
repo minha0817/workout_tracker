@@ -76,6 +76,7 @@ export default function Program() {
   // };
 
   const handleProgramEditMode = () => {
+    console.log('hit')
     setProgramEditMode(false);
   };
 

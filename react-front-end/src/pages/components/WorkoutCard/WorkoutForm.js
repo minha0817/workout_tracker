@@ -32,23 +32,23 @@ export default function WorkoutForm(props) {
   });
 
   //State for errors
-  const [nameError, setNameerror] = useState(false);
+  const [nameError, setNameError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [durationError, setDurationError] = useState(false);
   const [imageError, setImageError] = useState(false);
 
   const checkAllErrors = () => {
-    setNameerror(false);
+    setNameError(false);
     setDescriptionError(false);
     setDurationError(false);
     setImageError(false);
 
-    if (state.name && state.description) {
+    if (state.name && state.description && state.duration && state.image) {
       return true;
     }
 
     if (!state.name) {
-      setNameerror("Name - required");
+      setNameError("Name - required");
     }
     if (!state.description) {
       setDescriptionError("Description - required");
