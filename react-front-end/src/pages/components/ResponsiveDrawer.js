@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
+import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
@@ -17,6 +18,7 @@ import {
   ListItemText,
   Collapse,
   Toolbar,
+  IconButton,
 } from "@mui/material";
 
 import Appbar from "./Appbar";
@@ -36,10 +38,6 @@ export default function ResponsiveDrawer(props) {
     setOpen(!open);
   };
 
-  const handleEvent = (event) => {
-    event.stopPropagation();
-  };
-
   const drawerItems = (
     <div>
       <Divider />
@@ -48,6 +46,7 @@ export default function ResponsiveDrawer(props) {
         component="nav"
         aria-labelledby="nested-list-subheader"
       >
+        {/* Dashboard */}
         <Link to="/dashboard" className={"programListItem"}>
           <ListItemButton>
             <ListItemIcon>
@@ -57,25 +56,27 @@ export default function ResponsiveDrawer(props) {
           </ListItemButton>
         </Link>
 
+        {/* Programs */}
         <ListItemButton onClick={handleClick}>
           <ListItemIcon>
             <FitnessCenterIcon />
           </ListItemIcon>
           <ListItemText primary={"Programs"} />
-
-          <Link to={"/program/new"}>
-            <AddIcon
-              onClick={(e) => {
-                handleEvent(e);
-              }}
-            />
-          </Link>
-
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
+            {/* Add New Program */}
+            <Link to={"/program/new"} className={"programListItem"}>
+              <ListItemButton sx={{ pl: 4, pr: 1 }}>
+                <ListItemText primary={"Add New Program"} />
+                <IconButton sx={{ pl: 1 }}>
+                  <AddCircleOutlineRoundedIcon />
+                </IconButton>
+              </ListItemButton>
+            </Link>
+
             {/* Array of programs */}
             {props.programs.map((program) => (
               <Link
