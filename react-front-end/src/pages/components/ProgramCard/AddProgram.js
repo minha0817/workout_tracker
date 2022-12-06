@@ -3,12 +3,21 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { usePrograms } from "../../../App";
 import ProgramForm from "./ProgramForm";
+import { Button, Box } from "@mui/material";
+import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 
 export default function AddProgram() {
   //State for name and description
   const [addProgramData, setAddProgramData] = useState({
     name: "",
     description: "",
+  });
+
+  const [errorMessages, setErrorMessages] = useState({
+    name: "",
+    description: "",
+    startDate: "",
+    endDate: "",
   });
 
   //Use a UseOutletContext from App.js
@@ -22,6 +31,30 @@ export default function AddProgram() {
   const navigate = useNavigate();
 
   const addProgram = () => {
+    const validationObject = {};
+
+    validationObject.name = addProgramData.name ? "" : "Name - required";
+    validationObject.description = addProgramData.description
+      ? ""
+      : "Description - required";
+    validationObject.startDate = startDate
+      ? ""
+      : "Start Date - required";
+    validationObject.endDate = endDate
+      ? ""
+      : "End Date - required";
+
+    setErrorMessages({ ...errorMessages, ...validationObject });
+
+    if (
+      validationObject.name ||
+      validationObject.description ||
+      validationObject.startDate ||
+      validationObject.endDate
+    ) {
+      return;
+    }
+
     //Assemble program data object
     const newProgramFormData = {
       ...addProgramData,
@@ -85,8 +118,9 @@ export default function AddProgram() {
         startDateCallback={addStartDate}
         endDate={endDate}
         endDateCallback={addEndDate}
-        cancel={handleCancel}
-        save={addProgram}
+        errorMessages={errorMessages}
+        cancelCallback={handleCancel}
+        saveCallback={addProgram}
       />
     </>
   );

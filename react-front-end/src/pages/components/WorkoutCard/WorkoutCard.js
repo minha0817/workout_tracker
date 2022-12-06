@@ -43,7 +43,7 @@ export default function WorkoutCard(props) {
         />
       ) : (
         <>
-          <Card className="workoutListItem" onClick={handleNavigate}>
+          <Card className="workoutListItem" onClick={handleNavigate} sx={{width: "70%"}}>
             <Box display="flex">
                 <CardMedia
                   component="img"
@@ -59,13 +59,16 @@ export default function WorkoutCard(props) {
                   width="100%"
                 >
                   <CardContent>
-                    <Typography gutterBottom variant="h5">
+                    <Typography gutterBottom variant="h4">
                       {props.workout.name}
                     </Typography>
-                    <Typography gutterBottom variant="body2">
-                      Duration : {props.workout.duration}
+                    <Typography variant="h6" pt={"0.5em"}>
+                      Duration
                     </Typography>
-                    <Typography variant="h5" pt={"0.5em"}>
+                    <Typography gutterBottom variant="p">
+                      {props.workout.duration} minutes
+                    </Typography>
+                    <Typography variant="h6" pt={"0.5em"}>
                       Description
                     </Typography>
                     <Typography variant="p">
