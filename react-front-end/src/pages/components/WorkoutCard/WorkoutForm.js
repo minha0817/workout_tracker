@@ -15,7 +15,6 @@ import Axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Confirmation from "../Confirmation";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
-import CloseIcon from "@mui/icons-material/Close";
 import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded";
 
 //A form for creating, editing workout
