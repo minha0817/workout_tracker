@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
-import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 import {
   Box,
@@ -16,6 +17,7 @@ import {
   ListItemText,
   Collapse,
   Toolbar,
+  IconButton,
 } from "@mui/material";
 
 import Appbar from "./Appbar";
@@ -35,16 +37,6 @@ export default function ResponsiveDrawer(props) {
     setOpen(!open);
   };
 
-  const navigate = useNavigate();
-  // Main logo click handler
-  const onClickEvent = () => {
-    navigate("/dashboard");
-  };
-
-  const handleEvent = (event) => {
-    event.stopPropagation();
-  };
-
   const drawerItems = (
     <div>
       <Divider />
@@ -53,6 +45,7 @@ export default function ResponsiveDrawer(props) {
         component="nav"
         aria-labelledby="nested-list-subheader"
       >
+        {/* Dashboard */}
         <Link to="/dashboard" className={"programListItem"}>
           <ListItemButton>
             <ListItemIcon>
@@ -62,26 +55,28 @@ export default function ResponsiveDrawer(props) {
           </ListItemButton>
         </Link>
 
+        {/* Programs */}
         <ListItemButton onClick={handleClick}>
           <ListItemIcon>
             <FitnessCenterIcon />
           </ListItemIcon>
           <ListItemText primary={"Programs"} />
-
-          <Link to={"/program/new"}>
-            <AddIcon
-              onClick={(e) => {
-                handleEvent(e);
-              }}
-            />
-          </Link>
-
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {/* ARRAY OF PROGRAMS */}
+            {/* Add New Program */}
+            <Link to={"/program/new"} className={"programListItem"}>
+              <ListItemButton sx={{ pl: 4, pr: 1 }}>
+                <ListItemText primary={"Add New Program"} />
+                <IconButton sx={{ pl: 1 }}>
+                  <AddCircleOutlineRoundedIcon />
+                </IconButton>
+              </ListItemButton>
+            </Link>
+
+            {/* Array of programs */}
             {props.programs.map((program) => (
               <Link
                 to={`/program/${program.id}`}
@@ -90,7 +85,7 @@ export default function ResponsiveDrawer(props) {
               >
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemIcon>
-                    <StarBorder />
+                    <ArrowRightIcon />
                   </ListItemIcon>
                   <ListItemText primary={program.name} />
                 </ListItemButton>

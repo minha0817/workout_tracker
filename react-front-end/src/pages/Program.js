@@ -132,13 +132,13 @@ export default function Program() {
             getWorkout={getWorkout}
           />
         ) : (
-          <Box display="flex" justifyContent="center" alignItems="center"  sx={{justifyContent: "center", width: "70%"}}
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ justifyContent: "center", width: "70%" }}
           >
-            <Fab
-              color="primary"
-              aria-label="add"
-              size="medium"
-            >
+            <Fab color="primary" aria-label="add" size="medium">
               <AddIcon onClick={handleWorkoutEditMode} />
             </Fab>
           </Box>
