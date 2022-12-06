@@ -238,13 +238,7 @@ export default function ExerciseCard(props) {
             aria-expanded={expanded}
             aria-label="show more"
           >
-            {props.edit ? (
-              <Tooltip title="Cancel" arrow placement="right">
-                <CloseRoundedIcon />
-              </Tooltip>
-            ) : (
-              <ExpandMoreIcon />
-            )}
+            {props.edit ? <CloseRoundedIcon /> : <ExpandMoreIcon />}
           </ExpandMore>
         </CardActions>
       </CardContent>
@@ -306,11 +300,20 @@ export default function ExerciseCard(props) {
             </CardContent>
             <CardActions>
               <Button
+                variant="outlined"
+                color="secondary"
+                size="small"
+                onClick={handleExpandClick}
+                sx={{ ml: "auto", mr: "2px" }}
+              >
+                Cancel
+              </Button>
+              <Button
                 variant="contained"
                 size="small"
                 startIcon={<SaveSharpIcon />}
                 onClick={submitCreateForm}
-                sx={{ ml: "auto" }}
+                sx={{ mr: "8px" }}
               >
                 SAVE
               </Button>
