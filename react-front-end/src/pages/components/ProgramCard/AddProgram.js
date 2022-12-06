@@ -75,9 +75,9 @@ export default function AddProgram() {
       });
   };
 
-  //Redirect to the homepage
+  //Redirect to the previous page
   const handleCancel = () => {
-    navigate("/dashboard");
+    navigate(-1);
   };
 
   //Setstate for name
