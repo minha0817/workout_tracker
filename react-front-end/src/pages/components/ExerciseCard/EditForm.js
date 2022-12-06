@@ -137,8 +137,12 @@ export default function ExerciseCard(props) {
     // Send request to delete
     Axios.delete(`/api/exercises/${exerciseId}`)
       .then((response) => {
-        // Refresh current page
-        navigate(0);
+        // Build updated state (array) of exercises
+        const newState = [...props.exercisesState];
+        newState.splice(props.index, 1);
+
+        // Set updated state
+        props.setExercises(newState);
       })
       .catch((e) => console.log(e));
   };
