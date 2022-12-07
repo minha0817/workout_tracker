@@ -9,7 +9,7 @@ export const Heatmap = (props) => {
       to="2022-12-25"
       emptyColor="#eeeeee"
       maxValue={1}
-      colors={["#61cdbb"]}
+      colors={["#ed6500"]}
       margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
       yearSpacing={40}
       monthBorderColor="#ffffff"

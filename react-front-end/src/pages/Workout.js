@@ -41,8 +41,8 @@ export default function Workout(props) {
         direction="column"
         justifyContent="flex-start"
         alignItems="stretch"
-        spacing={6}
-        maxWidth={1200}
+        spacing={3}
+        maxWidth={1000}
         minWidth={380}
       >
         {/* Array of Exercise Cards */}

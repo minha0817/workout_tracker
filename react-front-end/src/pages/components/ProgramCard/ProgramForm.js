@@ -19,7 +19,7 @@ export default function ProgramForm(props) {
         sx={{
           "& > :not(style)": {
             m: 1,
-            minWidth: "380"
+            minWidth: "380",
           },
         }}
         noValidate
@@ -107,7 +107,7 @@ export default function ProgramForm(props) {
             justifyContent: "flex-end",
           }}
         >
-          <CardActions disableSpacing>
+          <CardActions disableSpacing sx={{ pr: 0 }}>
             <Button
               variant="outlined"
               color="secondary"
