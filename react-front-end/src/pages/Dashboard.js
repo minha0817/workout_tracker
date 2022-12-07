@@ -16,7 +16,10 @@ export default function Dashboard() {
   const [userEdit, setUserEdit] = useState(false);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [logBtnMsg, setLogBtnMsg] = useState("Worked out?");
+  const [logBtn, setLogBtn] = useState({
+    message: "Worked out?",
+    color: "primary",
+  });
 
   // Grabs info from both api
   useEffect(() => {
@@ -65,7 +68,7 @@ export default function Dashboard() {
     const value = 1;
     Axios.post("/api/workoutlogs", { user_id, value, day })
       .then((result) => {
-        setLogBtnMsg("Good job!");
+        setLogBtn({ message: "Good job!", color: "secondary" });
         getHeatmap();
       })
       .catch((err) => {
@@ -79,11 +82,11 @@ export default function Dashboard() {
         <Box
           display={"flex"}
           justifyContent={"space-between"}
-          alignItems={"flex-start"}
+          alignItems={"center"}
+          mb={2}
         >
           <Typography
             variant="h4"
-            gutterBottom
             sx={{ fontSize: { xs: "1.5rem", sm: "1.5rem", md: "2.125rem" } }}
           >
             Welcome to your dashboard, {dashboard.first_name}
@@ -191,8 +194,9 @@ export default function Dashboard() {
                       onClick={() => {
                         WorkoutSubmitHandler();
                       }}
+                      color={logBtn.color}
                     >
-                      {logBtnMsg}
+                      {logBtn.message}
                     </Button>
                   </Typography>
                 </CardContent>

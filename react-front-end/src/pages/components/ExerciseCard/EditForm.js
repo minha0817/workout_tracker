@@ -309,13 +309,13 @@ export default function ExerciseCard(props) {
                   onChange={(e) => setNotes(e.target.value)}
                 />
               </CardContent>
-              <CardActions sx={{ p: 0 }}>
+              <CardActions disableSpacing>
                 <Button
                   variant="outlined"
                   color="secondary"
                   size="small"
                   onClick={handleExpandClick}
-                  sx={{ ml: "auto", mr: "2px" }}
+                  sx={{ ml: "auto" }}
                 >
                   Cancel
                 </Button>
@@ -324,6 +324,7 @@ export default function ExerciseCard(props) {
                   size="small"
                   startIcon={<SaveSharpIcon />}
                   onClick={submitEditForm}
+                  sx={{ ml: "10px" }}
                 >
                   SAVE
                 </Button>
@@ -334,7 +335,6 @@ export default function ExerciseCard(props) {
                   size="large"
                   color="error"
                   onClick={() => setConfirmOpen(true)}
-                  sx={{ pl: 0 }}
                 >
                   <DeleteIcon />
                 </IconButton>
