@@ -106,7 +106,7 @@ export default function AddProgram() {
         gutterBottom
         sx={{ marginLeft: "15px", minWidth: "380px" }}
       >
-        <b>Add New Program </b>
+        Add New Program
       </Typography>
       <Box sx={{ width: "70%", minWidth: "380px" }}>
         <ProgramForm
