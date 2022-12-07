@@ -20,7 +20,7 @@ export default function ProgramForm(props) {
           "& > :not(style)": {
             m: 1,
             maxWidth: "80%",
-            minWidth: "70%",
+            minWidth: "380px",
             width: "70",
           },
         }}

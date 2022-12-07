@@ -103,8 +103,8 @@ export default function AddProgram() {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>
-        Add program
+      <Typography variant="h4" gutterBottom sx={{marginLeft: "15px", minWidth: "380px"}}>
+        <b>Add New Program </b>
       </Typography>
       <ProgramForm
         nameCallback={addName}
