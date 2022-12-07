@@ -134,12 +134,13 @@ export default function WorkoutForm(props) {
 
   return (
     <>
-      <Card display="flex" sx={{ width: "70%" }}>
+      <Card display="flex" sx={{ width: "70%"}}>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
+            minWidth: "380px" 
             // alignItems: "center",
           }}
         >

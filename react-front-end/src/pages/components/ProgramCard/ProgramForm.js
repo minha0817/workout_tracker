@@ -19,9 +19,7 @@ export default function ProgramForm(props) {
         sx={{
           "& > :not(style)": {
             m: 1,
-            maxWidth: "80%",
-            minWidth: "70%",
-            width: "70",
+            minWidth: "380"
           },
         }}
         noValidate
@@ -30,7 +28,6 @@ export default function ProgramForm(props) {
         <TextField
           id="outlined-basic"
           variant="outlined"
-          fullWidth
           sx={{ mb: "2rem" }}
           label="Program Name"
           name="programName"
@@ -45,7 +42,6 @@ export default function ProgramForm(props) {
         <TextField
           id="outlined-basic"
           variant="outlined"
-          fullWidth
           label="Description"
           multiline
           name="Description"

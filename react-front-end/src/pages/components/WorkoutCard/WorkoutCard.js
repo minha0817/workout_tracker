@@ -44,7 +44,7 @@ export default function WorkoutCard(props) {
           <Card
             className="workoutListItem"
             onClick={handleNavigate}
-            sx={{ width: "70%" }}
+            sx={{ width: "70%", minWidth: "380px", cursor: "pointer" }}
           >
             <Box display="flex">
               <CardMedia

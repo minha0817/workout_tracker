@@ -289,7 +289,7 @@ export default function ExerciseCard(props) {
                 onChange={(e) => setImageURL(e.target.value)}
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment position="end">
+                    <InputAdornment position="end" sx={{ position: "relative", top: "4px" }}>
                       <Link
                         href="https://www.pexels.com/"
                         target="_blank"
