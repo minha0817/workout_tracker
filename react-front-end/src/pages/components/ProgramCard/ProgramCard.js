@@ -157,7 +157,7 @@ export default function ProgramCard(props) {
     <>
       {props.edit ? (
         <>
-          <Card>
+          <Card sx = {{ width: "70%", minWidth: "380px" }}>
             <ProgramForm
               name={name}
               nameCallback={nameCallback}

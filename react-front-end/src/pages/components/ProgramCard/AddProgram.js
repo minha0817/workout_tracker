@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { usePrograms } from "../../../App";
 import ProgramForm from "./ProgramForm";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export default function AddProgram() {
   //State for name and description
@@ -103,22 +103,28 @@ export default function AddProgram() {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom sx={{marginLeft: "15px", minWidth: "380px"}}>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{ marginLeft: "15px", minWidth: "380px" }}
+      >
         <b>Add New Program </b>
       </Typography>
-      <ProgramForm
-        nameCallback={addName}
-        name={addProgramData.name}
-        description={addProgramData.description}
-        descriptionCallback={addDescription}
-        startDate={startDate}
-        startDateCallback={addStartDate}
-        endDate={endDate}
-        endDateCallback={addEndDate}
-        errorMessages={errorMessages}
-        cancelCallback={handleCancel}
-        saveCallback={addProgram}
-      />
+      <Box sx={{ width: "70%", minWidth: "380px" }}>
+        <ProgramForm
+          nameCallback={addName}
+          name={addProgramData.name}
+          description={addProgramData.description}
+          descriptionCallback={addDescription}
+          startDate={startDate}
+          startDateCallback={addStartDate}
+          endDate={endDate}
+          endDateCallback={addEndDate}
+          errorMessages={errorMessages}
+          cancelCallback={handleCancel}
+          saveCallback={addProgram}
+        />
+      </Box>
     </>
   );
 }
