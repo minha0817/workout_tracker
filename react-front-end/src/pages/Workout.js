@@ -37,6 +37,7 @@ export default function Workout(props) {
       <Typography variant="h4" gutterBottom>
         {workoutData.name}
       </Typography>
+
       <Stack
         direction="column"
         justifyContent="flex-start"

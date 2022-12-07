@@ -13,7 +13,6 @@ import {
   CardActions,
   CardContent,
   TextField,
-  Tooltip,
   Typography,
 } from "@mui/material";
 
@@ -21,9 +20,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+
 import { styled } from "@mui/material/styles";
 import Axios from "axios";
 import Confirmation from "../Confirmation";
+import Buttons from "./IncDecButtons";
 
 // Styled component necessary for expandable portion of card
 const ExpandMore = styled((props) => {
@@ -40,8 +41,7 @@ const ExpandMore = styled((props) => {
 // Styled component for wrapping each attribute of exercise
 const ExerciseAttribute = styled("div")({
   display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  justifyContent: "center",
 });
 
 export default function ExerciseCard(props) {
@@ -171,6 +171,8 @@ export default function ExerciseCard(props) {
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
+            pl: 0,
+            pr: 1,
           }}
         >
           <ExerciseAttribute>
@@ -200,6 +202,11 @@ export default function ExerciseCard(props) {
               inputProps={{ min: 1 }}
               error={setsError}
             />
+            <Buttons
+              value={sets}
+              increment={() => setSets((prev) => Number(prev) + 1)}
+              decrement={() => setSets((prev) => Number(prev) - 1)}
+            />
           </ExerciseAttribute>
           <Divider orientation="vertical" variant="middle" flexItem />
           <ExerciseAttribute>
@@ -217,6 +224,11 @@ export default function ExerciseCard(props) {
               inputProps={{ min: 1 }}
               error={repsError}
             />
+            <Buttons
+              value={reps}
+              increment={() => setReps((prev) => Number(prev) + 1)}
+              decrement={() => setReps((prev) => Number(prev) - 1)}
+            />
           </ExerciseAttribute>
           <Divider orientation="vertical" variant="middle" flexItem />
           <ExerciseAttribute>
@@ -233,6 +245,11 @@ export default function ExerciseCard(props) {
               sx={{ maxWidth: "50%" }}
               inputProps={{ step: 5, min: 0 }}
               error={loadError}
+            />
+            <Buttons
+              value={load}
+              increment={() => setLoad((prev) => Number(prev) + 5)}
+              decrement={() => setLoad((prev) => Number(prev) - 5)}
             />
           </ExerciseAttribute>
           <Divider orientation="vertical" variant="middle" flexItem />
@@ -256,9 +273,14 @@ export default function ExerciseCard(props) {
               }}
               error={restError}
             />
+            <Buttons
+              value={rest}
+              increment={() => setRest((prev) => Number(prev) + 1)}
+              decrement={() => setRest((prev) => Number(prev) - 1)}
+            />
           </ExerciseAttribute>
           {/* Expand/collapse details chevron */}
-          <CardActions>
+          <CardActions sx={{ p: 0 }}>
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
