@@ -89,7 +89,7 @@ export default function Program() {
         direction="column"
         justifyContent="flex-start"
         alignItems="stretch"
-        spacing={2}
+        spacing={3}
       >
         {program ? (
           <ProgramCard

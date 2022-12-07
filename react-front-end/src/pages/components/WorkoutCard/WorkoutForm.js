@@ -47,18 +47,18 @@ export default function WorkoutForm(props) {
     }
 
     if (!state.name) {
-      setNameError("Name - required");
+      setNameError("Required");
     }
     if (!state.description) {
-      setDescriptionError("Description - required");
+      setDescriptionError("Required");
     }
 
     if (!state.duration) {
-      setDurationError("Duration - Number required");
+      setDurationError("Required");
     }
 
     if (!state.image) {
-      setImageError("Image - required");
+      setImageError("Required");
     }
 
     return false;
@@ -134,18 +134,17 @@ export default function WorkoutForm(props) {
 
   return (
     <>
-      <Card display="flex" sx={{ width: "70%"}}>
+      <Card display="flex" sx={{ width: "70%" }}>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
-            minWidth: "380px" 
+            minWidth: "380px",
             // alignItems: "center",
           }}
         >
           <CardContent>
-            {/* <Typography variant="h5">Workout title</Typography> */}
             <div>
               <TextField
                 id="outlined-basic"
@@ -157,7 +156,6 @@ export default function WorkoutForm(props) {
                 value={state.name || ""}
                 onChange={nameCallback}
                 sx={{ mb: "2rem" }}
-                // sx={{ maxWidth: "80%", overflow: "visible" }}
                 helperText={nameError ? nameError : ""}
                 error={!!nameError}
               />
@@ -171,9 +169,11 @@ export default function WorkoutForm(props) {
                 sx={{ mb: "2rem" }}
                 label="Duration"
                 type="number"
-                // placeholder={state.duration}
                 value={state.duration || ""}
                 InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">min</InputAdornment>
+                  ),
                   inputProps: { min: 0 },
                 }}
                 onChange={durationCallback}
@@ -234,7 +234,7 @@ export default function WorkoutForm(props) {
                 }}
               />
             </div>
-            <CardActions disableSpacing>
+            <CardActions disableSpacing sx={{ pr: 0 }}>
               <Button
                 variant="outlined"
                 color="secondary"

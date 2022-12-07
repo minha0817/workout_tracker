@@ -11,7 +11,7 @@ import {
   CardContent,
   Typography,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { styled } from "@mui/material/styles";
@@ -69,10 +69,10 @@ export default function ProgramCard(props) {
   const editProgram = () => {
     const validationObject = {};
 
-    validationObject.name = name ? "" : "Name - required";
-    validationObject.description = description ? "" : "Description - required";
-    validationObject.startDate = startDate ? "" : "Start Date - required";
-    validationObject.endDate = endDate ? "" : "End Date - required";
+    validationObject.name = name ? "" : "Required";
+    validationObject.description = description ? "" : "Required";
+    validationObject.startDate = startDate ? "" : "Required";
+    validationObject.endDate = endDate ? "" : "Required";
 
     setErrorMessages({ ...errorMessages, ...validationObject });
 
@@ -134,30 +134,29 @@ export default function ProgramCard(props) {
     setEndDate(value);
   };
 
-//Responsive styling for MUI 
+  //Responsive styling for MUI
 
-//   const Root = styled('div')(({theme}) => ({
-//     root: {
-//       [theme.breakpoints.down('md')]: {
-//         width: "100%",
-//         minwidth: "380px",
-//         color: red,
-//       },
-//       [theme.breakpoints.up('lg')]: {
-//         width: "70%",
-//         minwidth: "380px",
-//         color: green
-//       }
-//     }
-//   })
-// )
-
+  //   const Root = styled('div')(({theme}) => ({
+  //     root: {
+  //       [theme.breakpoints.down('md')]: {
+  //         width: "100%",
+  //         minwidth: "380px",
+  //         color: red,
+  //       },
+  //       [theme.breakpoints.up('lg')]: {
+  //         width: "70%",
+  //         minwidth: "380px",
+  //         color: green
+  //       }
+  //     }
+  //   })
+  // )
 
   return (
     <>
       {props.edit ? (
         <>
-          <Card sx = {{ width: "70%", minWidth: "380px" }}>
+          <Card sx={{ width: "70%", minWidth: "380px" }}>
             <ProgramForm
               name={name}
               nameCallback={nameCallback}
@@ -176,7 +175,7 @@ export default function ProgramCard(props) {
         </>
       ) : (
         <>
-          <Card sx = {{ width: "70%", minWidth: "380px" }} >
+          <Card sx={{ width: "70%", minWidth: "380px" }}>
             <CardContent
               sx={{
                 display: "flex",
@@ -189,7 +188,9 @@ export default function ProgramCard(props) {
             >
               <Box display="flex">
                 <ProgramAttribute>
-                  <Typography variant="h4"><b>{props.program.name}</b></Typography>
+                  <Typography variant="h4">
+                    <b>{props.program.name}</b>
+                  </Typography>
                 </ProgramAttribute>
                 <Divider
                   orientation="vertical"
