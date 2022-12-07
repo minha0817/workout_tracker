@@ -10,9 +10,12 @@ import {
   CardActions,
   CardContent,
   Typography,
+  useMediaQuery,
+  useTheme
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { styled } from "@mui/material/styles";
+// import { red, green } from "@mui/material/colors";
 
 const ProgramAttribute = styled("div")({
   display: "flex",
@@ -131,11 +134,30 @@ export default function ProgramCard(props) {
     setEndDate(value);
   };
 
+//Responsive styling for MUI 
+
+//   const Root = styled('div')(({theme}) => ({
+//     root: {
+//       [theme.breakpoints.down('md')]: {
+//         width: "100%",
+//         minwidth: "380px",
+//         color: red,
+//       },
+//       [theme.breakpoints.up('lg')]: {
+//         width: "70%",
+//         minwidth: "380px",
+//         color: green
+//       }
+//     }
+//   })
+// )
+
+
   return (
     <>
       {props.edit ? (
         <>
-          <Card sx={{ width: "70%" }}>
+          <Card sx = {{ width: "70%", minWidth: "380px" }}>
             <ProgramForm
               name={name}
               nameCallback={nameCallback}
@@ -154,7 +176,7 @@ export default function ProgramCard(props) {
         </>
       ) : (
         <>
-          <Card sx={{ width: "70%" }}>
+          <Card sx = {{ width: "70%", minWidth: "380px" }} >
             <CardContent
               sx={{
                 display: "flex",
@@ -162,12 +184,12 @@ export default function ProgramCard(props) {
                 pr: 1,
                 fontSize: { xs: "1rem", sm: "1.5rem" },
                 flexDirection: "column",
-                paddingLeft: "20px"
+                paddingLeft: "20px",
               }}
             >
               <Box display="flex">
                 <ProgramAttribute>
-                  <Typography variant="h4">{props.program.name}</Typography>
+                  <Typography variant="h4"><b>{props.program.name}</b></Typography>
                 </ProgramAttribute>
                 <Divider
                   orientation="vertical"

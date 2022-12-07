@@ -68,7 +68,7 @@ export default function ResponsiveDrawer(props) {
           <List component="div" disablePadding>
             {/* Add New Program */}
             <Link to={"/program/new"} className={"programListItem"}>
-              <ListItemButton sx={{ pl: 4, pr: 1 }}>
+              <ListItemButton sx={{ pl: 4, pr: 1}}>
                 <ListItemText primary={"Add New Program"} />
                 <IconButton sx={{ pl: 1 }}>
                   <AddCircleOutlineRoundedIcon />

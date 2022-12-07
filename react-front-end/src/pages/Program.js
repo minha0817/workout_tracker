@@ -71,10 +71,6 @@ export default function Program() {
       .catch((e) => console.log(e));
   };
 
-  // const handleEditMode = () => {
-  //   setEditMode(false);
-  // };
-
   const handleProgramEditMode = () => {
     setProgramEditMode(false);
   };
