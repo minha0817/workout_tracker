@@ -14,7 +14,6 @@ export default function ProgramForm(props) {
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
-        // alignItems="center"
         component="form"
         sx={{
           "& > :not(style)": {

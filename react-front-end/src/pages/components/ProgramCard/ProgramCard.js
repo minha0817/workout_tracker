@@ -189,7 +189,7 @@ export default function ProgramCard(props) {
             >
               <Box display="flex">
                 <ProgramAttribute>
-                  <Typography variant="h4">{props.program.name}</Typography>
+                  <Typography variant="h4"><b>{props.program.name}</b></Typography>
                 </ProgramAttribute>
                 <Divider
                   orientation="vertical"
