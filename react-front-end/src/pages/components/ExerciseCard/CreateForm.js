@@ -220,7 +220,7 @@ export default function ExerciseCard(props) {
             onChange={(e) => setLoad(e.target.value)}
             value={load}
             sx={{ maxWidth: "50%" }}
-            inputProps={{ step: 5, min: 0 }}
+            inputProps={{ step: 0.5, min: 0 }}
             error={loadError}
           />
           <Buttons
