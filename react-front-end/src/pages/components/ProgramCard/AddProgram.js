@@ -32,10 +32,10 @@ export default function AddProgram() {
   const addProgram = () => {
     const validationObject = {};
 
-    validationObject.name = addProgramData.name ? "" : "Required";
-    validationObject.description = addProgramData.description ? "" : "Required";
-    validationObject.startDate = startDate ? "" : "Required";
-    validationObject.endDate = endDate ? "" : "Required";
+    validationObject.name = addProgramData.name ? "" : "Name - Required";
+    validationObject.description = addProgramData.description ? "" : "Description - Required";
+    validationObject.startDate = startDate ? "" : "Start Date - Required";
+    validationObject.endDate = endDate ? "" : "End Date - Required";
 
     setErrorMessages({ ...errorMessages, ...validationObject });
 
