@@ -67,10 +67,10 @@ export default function ProgramCard(props) {
   const editProgram = () => {
     const validationObject = {};
 
-    validationObject.name = name ? "" : "Required";
-    validationObject.description = description ? "" : "Required";
-    validationObject.startDate = startDate ? "" : "Required";
-    validationObject.endDate = endDate ? "" : "Required";
+    validationObject.name = name ? "" : "Name - Required";
+    validationObject.description = description ? "" : "Description - Required";
+    validationObject.startDate = startDate ? "" : "Start Date - Required";
+    validationObject.endDate = endDate ? "" : "End Date - Required";
 
     setErrorMessages({ ...errorMessages, ...validationObject });
 
@@ -132,23 +132,6 @@ export default function ProgramCard(props) {
     setEndDate(value);
   };
 
-  //Responsive styling for MUI
-
-  //   const Root = styled('div')(({theme}) => ({
-  //     root: {
-  //       [theme.breakpoints.down('md')]: {
-  //         width: "100%",
-  //         minwidth: "380px",
-  //         color: red,
-  //       },
-  //       [theme.breakpoints.up('lg')]: {
-  //         width: "70%",
-  //         minwidth: "380px",
-  //         color: green
-  //       }
-  //     }
-  //   })
-  // )
 
   return (
     <>

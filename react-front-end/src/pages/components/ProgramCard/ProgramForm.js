@@ -67,6 +67,7 @@ export default function ProgramForm(props) {
                 <TextField
                   id="outlined-basic"
                   variant="outlined"
+                  {...params}
                   sx={{ width: "49%" }}
                   helperText={
                     props.errorMessages.startDate
@@ -74,7 +75,6 @@ export default function ProgramForm(props) {
                       : ""
                   }
                   error={!!props.errorMessages.startDate}
-                  {...params}
                 />
               )}
             />
@@ -88,6 +88,7 @@ export default function ProgramForm(props) {
                 <TextField
                   id="outlined-basic"
                   variant="outlined"
+                  {...params}
                   sx={{ width: "49%" }}
                   helperText={
                     props.errorMessages.endDate
@@ -95,7 +96,6 @@ export default function ProgramForm(props) {
                       : ""
                   }
                   error={!!props.errorMessages.endDate}
-                  {...params}
                 />
               )}
             />
