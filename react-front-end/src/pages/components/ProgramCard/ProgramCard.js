@@ -10,8 +10,6 @@ import {
   CardActions,
   CardContent,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { styled } from "@mui/material/styles";

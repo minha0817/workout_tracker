@@ -52,11 +52,11 @@ export default function ExerciseCard(props) {
           fontSize: { xs: "1rem", sm: "1.5rem" },
         }}
       >
-        <ExerciseAttribute sx={{ width: "15%" }}>
+        <Box sx={{ width: "15%" }}>
           <Typography variant="h5" fontSize={{ xs: "1rem", sm: "1.5rem" }}>
             {props.name}
           </Typography>
-        </ExerciseAttribute>
+        </Box>
         <Divider orientation="vertical" variant="middle" flexItem />
         <ExerciseAttribute>
           <Typography variant="h5" fontSize={{ xs: "1rem", sm: "1.5rem" }}>
