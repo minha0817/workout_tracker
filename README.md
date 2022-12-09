@@ -4,7 +4,6 @@ by Jason Ling, Kei Kaloustian, Minha Kim
 Fithub allows users to create their own programs, workouts and exercises for different types of physical activities. 
 
 ## Final Product 
-<hr>
 
 ### Overview of Fithub
 ![Overview of Fithub](https://github.com/minha0817/workout_tracker/blob/master/docs/overview.gif?raw=true)
