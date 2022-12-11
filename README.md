@@ -1,5 +1,5 @@
 # Fithub
-by Jason Ling, Kei Kaloustian, Minha Kim
+by Jason Ling (https://github.com/LingJason), Kei Kaloustian (https://github.com/keikaloustian) and Minha Kim (https://github.com/minha0817)
 
 Fithub allows users to create their own programs, workouts and exercises for different types of physical activities. 
 
