@@ -5,7 +5,7 @@ Fithub allows users to create their own programs, workouts and exercises for dif
 
 ## Final Product 
 
-### Overview of Fithub
+### Overview
 ![Overview of Fithub](https://github.com/minha0817/workout_tracker/blob/master/docs/overview.gif?raw=true)
 
 ### Dashboard
@@ -14,7 +14,7 @@ Fithub allows users to create their own programs, workouts and exercises for dif
 ### Create a new program
 ![Create a new program](https://github.com/minha0817/workout_tracker/blob/master/docs/creating_program.gif?raw=true)
 
-### Edit and delete the program
+### Edit and delete program
 ![Edit and delete the program](https://github.com/minha0817/workout_tracker/blob/master/docs/edit_delete_program.gif?raw=true)
 
 ### Create, edit and delete a workout
@@ -23,10 +23,10 @@ Fithub allows users to create their own programs, workouts and exercises for dif
 ### Create an exercise
 ![Create, edit and delete an exercise](https://github.com/minha0817/workout_tracker/blob/master/docs/create_exercise.gif?raw=true)
 
-### Edit and delete the exercise
+### Edit and delete exercise
 ![Edit and delete the exercise](https://github.com/minha0817/workout_tracker/blob/master/docs/edit_delete_exercise.gif?raw=true)
 
-<hr>
+
 
 ## Running the application
 
