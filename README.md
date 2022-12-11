@@ -28,7 +28,7 @@ Fithub allows users to create their own programs, workouts and exercises for dif
 
 <hr>
 
-## Running the projects
+## Running the application
 
 You need **TWO** terminal windows/tabs for this app to run (or some other plan for running two Node processes).
 
@@ -38,7 +38,7 @@ You need **TWO** terminal windows/tabs for this app to run (or some other plan f
 
 3. Visit http://localhost:3000/
 
-<hr>
+
 
 ## Dependencies / Package
 - Axios
@@ -48,7 +48,7 @@ You need **TWO** terminal windows/tabs for this app to run (or some other plan f
 - Material UI
 - React
 
-<hr>
+
 
 ## Contact
 
