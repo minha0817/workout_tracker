@@ -40,7 +40,7 @@ You need **TWO** terminal windows/tabs for this app to run (or some other plan f
 
 
 
-## Dependencies / Package
+## Dependencies / Packages
 - Axios
 - Express
 - JS Cookie
